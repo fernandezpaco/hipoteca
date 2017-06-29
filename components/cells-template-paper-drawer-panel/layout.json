@@ -1,0 +1,29 @@
+{
+  "columns": [
+    {
+      "expand": 33,
+      "rows": [
+        {
+          "expand": 80,
+          "zones": [
+            {
+              "expand": 40,
+              "zone": "header",
+              "desc": "zone-header-desc"
+            },
+            {
+              "expand": 40,
+              "zone": "main",
+              "desc": "zone-main-desc"
+            },
+            {
+              "expand": 20,
+              "zone": "footer",
+              "desc": "zone-footer-desc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

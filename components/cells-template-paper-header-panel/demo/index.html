@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <title>Demo cells-template-paper-header-panel</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../paper-tabs/paper-tabs.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../cells-template-paper-header-panel.html">
+  <link rel="import" href="css/demo-styles.html">
+
+</head>
+
+<body unresolved ontouchstart>
+
+  <h1>
+      <span>
+        <svg  class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+          <path fill="#b4c0e3" d="M32.125 1.945c0 0.554-0.45 1.004-1.004 1.004h-30.117c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h30.117c0.554 0 1.004 0.45 1.004 1.004z"></path>
+          <path fill="#b4c0e3" d="M32.125 5.961c0 0.554-0.45 1.004-1.004 1.004h-30.117c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h30.117c0.554 0 1.004 0.45 1.004 1.004z"></path>
+          <path fill="#b4c0e3" d="M18.070 9.977c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+          <path fill="#b4c0e3" d="M18.070 13.992c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+          <path fill="#b4c0e3" d="M18.070 18.008c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+          <path fill="#b4c0e3" d="M18.070 22.023c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+          <path fill="#b4c0e3" d="M18.070 26.039c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+          <path fill="#b4c0e3" d="M32.125 9.977c0 0.554-0.45 1.004-1.004 1.004h-10.039c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h10.039c0.554 0 1.004 0.45 1.004 1.004z"></path>
+          <path fill="#b4c0e3" d="M18.070 30.055c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+          <path fill="#b4c0e3" d="M32.125 13.992c0 0.554-0.45 1.004-1.004 1.004h-10.039c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h10.039c0.554 0 1.004 0.45 1.004 1.004z"></path>
+          <path fill="#b4c0e3" d="M32.125 18.008c0 0.554-0.45 1.004-1.004 1.004h-10.039c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h10.039c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        </svg>
+      </span>
+      Template one column
+    </h1>
+
+  <p class="text">This component uses the 'paper-header-panel' component.</p>
+
+  <paper-tabs selected="0">
+    <paper-tab data-tab="demo-1">LAYOUT</paper-tab>
+    <paper-tab data-tab="demo-2">ANIMATIONS</paper-tab>
+  </paper-tabs>
+
+  <div class="inner" data-tab="demo-1">
+    <h2>Different types of template</h2>
+    <p>There are different header and scrolling behaviors.</p>
+
+    <demo-snippet>
+      <template>
+          <cells-template-paper-header-panel mode="standard">
+            <div data-select="app__header">
+              <div class="header">standard header</div>
+            </div>
+            <div data-select="app__main">
+              <div class="main">main</div>
+            </div>
+            <div data-select="app__footer">
+              <div class="footer">footer</div>
+            </div>
+            <div data-select="app__overlay">
+              <div class="overlay">overlay</div>
+            </div>
+          </cells-template-paper-header-panel>
+        </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+          <cells-template-paper-header-panel mode="seamed">
+            <div data-select="app__header">
+              <div class="header">seamed header</div>
+            </div>
+            <div data-select="app__main">
+              <div class="main">main</div>
+            </div>
+            <div data-select="app__footer">
+              <div class="footer">footer</div>
+            </div>
+            <div data-select="app__overlay">
+              <div class="overlay">overlay</div>
+            </div>
+          </cells-template-paper-header-panel>
+        </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+          <cells-template-paper-header-panel gradient-transparent mode="seamed">
+            <div data-select="app__header">
+              <div class="header">seamed header with gradient</div>
+            </div>
+            <div data-select="app__main">
+              <div class="main">main</div>
+            </div>
+            <div data-select="app__footer">
+              <div class="footer">footer</div>
+            </div>
+            <div data-select="app__overlay">
+              <div class="overlay">overlay</div>
+            </div>
+          </cells-template-paper-header-panel>
+        </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+          <cells-template-paper-header-panel mode="scroll">
+            <div data-select="app__header">
+              <div class="header">scroll header</div>
+            </div>
+            <div data-select="app__main">
+              <div class="main">main</div>
+            </div>
+            <div data-select="app__footer">
+              <div class="footer">footer</div>
+            </div>
+            <div data-select="app__overlay">
+              <div class="overlay">overlay</div>
+            </div>
+          </cells-template-paper-header-panel>
+        </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+          <cells-template-paper-header-panel mode="waterfall">
+            <div data-select="app__header">
+              <div class="header">waterfall header</div>
+            </div>
+            <div data-select="app__main">
+              <div class="main">main</div>
+            </div>
+            <div data-select="app__footer">
+              <div class="footer">footer</div>
+            </div>
+            <div data-select="app__overlay">
+              <div class="overlay">overlay</div>
+            </div>
+          </cells-template-paper-header-panel>
+        </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+          <cells-template-paper-header-panel mode="waterfall-tall">
+            <div data-select="app__header">
+              <div class="header">waterfall-tall header</div>
+            </div>
+            <div data-select="app__main">
+              <div class="main">main</div>
+            </div>
+            <div data-select="app__footer">
+              <div class="footer">footer</div>
+            </div>
+            <div data-select="app__overlay">
+              <div class="overlay">overlay</div>
+            </div>
+          </cells-template-paper-header-panel>
+        </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+          <cells-template-paper-header-panel mode="waterfall-tall" tall-class="medium-tall">
+            <div data-select="app__header">
+              <div class="header">waterfall-tall header
+                <span class="tall">tall-class=medium-tall</span>
+              </div>
+            </div>
+            <div data-select="app__main">
+              <div class="main">main</div>
+            </div>
+            <div data-select="app__footer">
+              <div class="footer">footer</div>
+            </div>
+            <div data-select="app__overlay">
+              <div class="overlay">overlay</div>
+            </div>
+          </cells-template-paper-header-panel>
+        </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+           <cells-template-paper-header-panel mode="cover">
+              <div data-select="app__header">
+              <div class="header">cover header</div>
+            </div>
+            <div data-select="app__main">
+              <div class="main">main</div>
+            </div>
+            <div data-select="app__footer">
+              <div class="footer">footer</div>
+            </div>
+            <div data-select="app__overlay">
+              <div class="overlay">overlay</div>
+            </div>
+          </cells-template-paper-header-panel>
+        </template>
+    </demo-snippet>
+
+    <div class="demo-desktop">
+      <h2>Mobile and desktop version</h2>
+      <p>The main panel occupies 100% of width and 780px of max-width. Example with a template greater than 780px:</p>
+      <cells-template-paper-header-panel class="desktop-example" mode="seamed">
+        <div data-select="app__header">
+          <div class="header">seamed header</div>
+        </div>
+        <div data-select="app__main">
+          <div class="main">main</div>
+        </div>
+        <div data-select="app__footer">
+          <div class="footer">footer</div>
+        </div>
+        <div data-select="app__overlay">
+          <div class="overlay">overlay</div>
+        </div>
+      </cells-template-paper-header-panel>
+    </div>
+
+    <div class="demo-transparent">
+      <h2>Gradient transparent property</h2>
+      <p>We apply a soft gradient effect from white to transparent:</p>
+      <cells-template-paper-header-panel gradientTransparent class="desktop-example" mode="seamed">
+        <div data-select="app__header">
+          <div class="header">seamed header property gradient-transparent</div>
+        </div>
+        <div data-select="app__main">
+          <div class="main">main</div>
+        </div>
+        <div data-select="app__footer">
+          <div class="footer">footer</div>
+        </div>
+        <div data-select="app__overlay">
+          <div class="overlay">overlay</div>
+        </div>
+      </cells-template-paper-header-panel>
+    </div>
+  </div>
+
+  <div class="inner hidden" data-tab="demo-2">
+    <div class="wrapper-animation">
+      <section class="section">
+        <h1>Animation <span>Horizontal</span></h1>
+        <p>Both pages, the output and input have a horizontal animation, whether navigating forward and backward</p>
+        <p><span>Page out</span> {animationType:horizontal}</p>
+        <p><span>Page in</span> {animationType:horizontal}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="horizontal horizontal--forwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--right">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+          <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+        </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="horizontal horizontal--backwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+          </svg>
+          </figure>
+        </article>
+      </section>
+
+      <section class="section">
+        <h1>Animation <span>vertical Down Forwards</span></h1>
+        <p>The output page has a vertical animation and input remains static when we go forward; to back both have a horizontal animation
+        </p>
+        <p><span>Page out</span> {animationType:verticalDownForwards}</p>
+        <p><span>Page in</span> {animationType:horizontal}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+
+          <div class="vertical vertical--down">
+            <div class="in in--vertical"><span class="btn">in static</span></div>
+            <div class="out out--vertical"><span class="btn">out</span></div>
+          </div>
+          <figure class="icon icon--down">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+      <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+  </svg>
+          </figure>
+        </article>
+
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="horizontal horizontal--backwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+          </svg>
+          </figure>
+        </article>
+      </section>
+
+
+      <section class="section">
+        <h1>Animation <span>vertical Down Backwards</span></h1>
+        <p>Both pages have a horizontal animation when we go forward; to back the output page has a vertical animation and input remains static</p>
+        <p><span>Page out</span> {animationType:horizontal}</p>
+        <p><span>Page in</span> {animationType:verticalDownBackwards}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="horizontal horizontal--forwards">
+
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--right">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+          <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+        </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+
+          <div class="vertical vertical--down">
+            <div class="in in--vertical"><span class="btn">in static</span></div>
+            <div class="out out--vertical"><span class="btn">out</span></div>
+          </div>
+          <figure class="icon icon--down">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+      <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+  </svg>
+          </figure>
+        </article>
+      </section>
+
+      <section class="section">
+        <h1>Animation <span>vertical up</span></h1>
+        <p>Both pages, the output and input have a vertical animation, whether navigating forward and backward</p>
+        <p><span>Page out</span> {animationType:verticalUp}</p>
+        <p><span>Page in</span> {animationType:verticalUp}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="vertical vertical--up">
+            <div class="out out--vertical"><span class="btn">out static</span></div>
+            <div class="in in--vertical"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--up">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+      <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+  </svg>
+          </figure>
+        </article>
+
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="vertical vertical--down">
+            <div class="in in--vertical"><span class="btn">in static</span></div>
+            <div class="out out--vertical"><span class="btn">out</span></div>
+          </div>
+          <figure class="icon icon--down">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+      <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+  </svg>
+          </figure>
+        </article>
+      </section>
+
+
+      <section class="section">
+        <h1>Animation <span>Horizontal ever</span></h1>
+        <p>Both pages, the output and the input have a horizontal animation, whether navigating forward and back</p>
+        <p><span>Page out</span>or in {animationType:horizontalEver}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="horizontal horizontal--forwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--right">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+          <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+        </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="horizontal horizontal--backwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+          </svg>
+          </figure>
+        </article>
+      </section>
+
+
+      <section class="section">
+        <h1>Animation <span>static ever</span></h1>
+        <p>Both pages, the output and the input have a static animation (no animation visible), whether navigating forward and back
+        </p>
+        <p><span>Page out</span>or in {animationType:staticEver}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="static">
+            <div class="in in--static"><span class="btn">in static</span></div>
+            <div class="out out--static"><span class="btn">out static</span></div>
+          </div>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="static static--backwards">
+            <div class="in in--static"><span class="btn">in static</span></div>
+            <div class="out out--static"><span class="btn">out static</span></div>
+          </div>
+        </article>
+      </section>
+
+    </div>
+  </div>
+  <script src="js/demo.js"></script>
+</body>
+
+</html>

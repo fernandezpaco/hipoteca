@@ -1,0 +1,52 @@
+<dom-module id="another-page">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <h1>Bienvenido a otra página  con este parametro [[itemId]]</h1>
+
+    <p>Te recuerdo que en la anterior página escribiste lo siguiente: <strong>[[greeting]]</strong></p>
+
+    <p>Te saludamos [[persona.name]] [[persona.surname]]</p>
+
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+    <p>Estoy usando también un data manager: [[users]]</p>
+
+    <button on-tap="_goToHome">Volver a la home</button>
+
+  </template>
+
+<script>
+(function() {
+  Polymer({
+    is: 'another-page',
+    properties: {
+      greeting: {
+        type: String,
+        value: ''
+      },
+      itemId: {
+        type: Number
+      },
+      persona: {
+        type: Object
+      },
+      users: {
+        type: Array,
+        value: function() {
+          return [];
+        }
+      }
+    },
+    _goToHome: function() {
+      this.fire('home-event');
+    }
+
+  });
+})();
+</script>
+
+</dom-module>

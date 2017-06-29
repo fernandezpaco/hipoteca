@@ -1,0 +1,76 @@
+<style is="custom-style">
+  :root {
+    --cells-input--base: {
+      color: var(--cells-KM2_colour);
+    };
+
+    --cells-input--font: {
+      @apply(--cells-text-size-m);
+    };
+
+    --cells-input--decorator: {
+      @apply(--cells-input-textbox-outline);
+      @apply(--cells-bdrs-all--xs);
+    };
+
+    --cells-input--animations: {};
+
+    /* states */
+    --cells-input--active: {
+      border: 1px solid var(--cells-BM6_colour);
+      background-color: var(--cells-BM10_colour);
+    };
+    --cells-input--focus: {
+      background-color: var(--cells-YM4_colour);
+    };
+    --cells-input--disabled: {
+      opacity: 0.60;
+      background: var(--cells-KMW_colour);
+    };
+
+    /* types */
+    --cells-input--error: {
+      background-color: var(--cells-RM5_colour);
+      box-shadow: 0 0 0 1px var(--cells-RM2_colour);
+      border: 1px solid var(--cells-transparent_colour);
+      color: var(--cells-RM4_colour);
+    };
+    --cells-input--icon: {
+      padding-left: var(--cells-height--l);
+    };
+    --cells-input--date: {
+      color: var(--cells-B1_colour);
+    };
+    --cells-input--date-decorator: {
+      @apply(--cells-decorator-content-type-01);
+      @apply(--cells-bdrs-all--xs);
+    };
+    --cells-input-textbox-outline: {
+      border: 1px solid var(--cells-KM9_colour);
+    };
+
+    /* sizes */
+    --cells-input--xxl: {
+      min-height: var(--cells-height--xxl);
+    };
+    --cells-input--xl: {
+      min-height: var(--cells-height--xl);
+    };
+    --cells-input--l: {
+      min-height: var(--cells-height--l);
+    };
+    --cells-input--m: {
+      min-height: var(--cells-height--m);
+    };
+    --cells-input--s: {
+      min-height: var(--cells-height--s);
+    };
+    --cells-input--xs: {
+      min-height: var(--cells-height--xs);
+    };
+    --cells-input--xxs: {
+      min-height: var(--cells-height--xxs);
+    };
+  }
+
+</style>

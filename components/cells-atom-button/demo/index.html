@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" name="viewport">
+  <title>cells-atom-button Demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../cells-theme-base/cells-theme-base.html">
+  <link rel="import" href="../../banking-icons/banking-icons.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="css/demo-styles.html">
+  <link rel="import" href="../../cells-atom-icon/cells-atom-icon.html">
+  <link rel="import" href="../cells-atom-button.html">
+</head>
+
+<body>
+  <section>
+    <demo-snippet>
+      <h2>Types</h2>
+      <template>
+        <button class="btn--primary" is="cells-atom-button">.btn--primary</button>
+        <button class="btn--secondary" is="cells-atom-button">.btn--secondary</button>
+        <button class="btn--tertiary" is="cells-atom-button">.btn--tertiary</button>
+        <button class="btn--quaternary" is="cells-atom-button">.btn--quaternary</button>
+        <button class="btn--neutral" is="cells-atom-button">.btn--neutral</button>
+        <button class="btn--transparent" is="cells-atom-button">.btn--transparent</button>
+        <button class="btn--link" is="cells-atom-button">.btn--link</button>
+      </template>
+    </demo-snippet>
+
+    <demo-snippet>
+      <template>
+        <button disabled class="btn--primary" is="cells-atom-button">[disabled] .btn--primary</button>
+        <button disabled class="btn--secondary" is="cells-atom-button">[disabled] .btn--secondary</button>
+        <button disabled class="btn--tertiary" is="cells-atom-button">[disabled] .btn--tertiary</button>
+        <button disabled class="btn--quaternary" is="cells-atom-button">[disabled] .btn--quaternary</button>
+        <button disabled class="btn--neutral" is="cells-atom-button">[disabled] .btn--neutral</button>
+        <button disabled class="btn--transparent" is="cells-atom-button">[disabled] .btn--transparent</button>
+        <button disabled class="btn--link" is="cells-atom-button">.btn--link</button>
+      </template>
+    </demo-snippet>
+  </section>
+
+  <section>
+    <demo-snippet>
+      <h2>Sizes</h2>
+      <template>
+        <button class="btn--xxs" is="cells-atom-button">btn--xxs</button>
+        <button class="btn--xs" is="cells-atom-button">btn--xs</button>
+        <button class="btn--s" is="cells-atom-button">btn--s</button>
+        <button class="btn--m" is="cells-atom-button">btn--m</button>
+        <button class="btn--l" is="cells-atom-button">btn--l</button>
+        <button class="btn--xl" is="cells-atom-button">btn--xl</button>
+        <button class="btn--xxl" is="cells-atom-button">btn--xxl</button>
+        <button class="btn--l btn--full" is="cells-atom-button">btn--full</button>
+      </template>
+    </demo-snippet>
+  </section>
+
+  <section>
+    <demo-snippet>
+      <h2>With icon(s) and text</h2>
+      <p>Add class <code>btn--composed</code> to buttons with two or more child nodes.</p>
+      <p>If you want to use icon + text, use <code>.btn__icon</code> and <code>.btn__text</code> classes.</p>
+      <template>
+        <button class="btn--primary btn--composed" is="cells-atom-button">
+          <cells-atom-icon icon="banking:F14" class="btn__icon icon-size-24"></cells-atom-icon>
+          <span class="btn__text">Button with two icons and text</span>
+          <cells-atom-icon icon="banking:F14" class="btn__icon icon-size-24"></cells-atom-icon>
+        </button>
+
+        <button class="btn--primary btn--with-icon" is="cells-atom-button">
+          <cells-atom-icon icon="banking:F14" class="icon-size-24"></cells-atom-icon>
+        </button>
+      </template>
+    </demo-snippet>
+  </section>
+
+  <section>
+    <demo-snippet>
+      <h2>Icon and text alignment</h2>
+      <template>
+        <button class="btn--neutral btn--l btn--full btn--composed btn--content-left" is="cells-atom-button">
+          <cells-atom-icon class="btn__icon icon-size-24" icon="banking:F14"></cells-atom-icon>
+          <span class="btn__text ">.btn--composed .btn--content-left</span>
+        </button>
+
+        <button class="btn--neutral btn--l btn--full btn--composed btn--content-right" is="cells-atom-button">
+          <span class="btn__text">.btn--composed .btn--content-right</span>
+          <cells-atom-icon class="btn__icon icon-size-24" icon="banking:F14"></cells-atom-icon>
+        </button>
+
+        <button class="btn--neutral btn--l btn--full btn--composed btn--content-centered" is="cells-atom-button">
+          <span class="btn__text">.btn--composed .btn--content-centered</span>
+          <cells-atom-icon class="btn__icon icon-size-24" icon="banking:F14"></cells-atom-icon>
+        </button>
+
+        <button class="btn--neutral btn--l btn--full btn--composed btn--content-centered" is="cells-atom-button">
+          <cells-atom-icon class="btn__icon icon-size-24" icon="banking:F14"></cells-atom-icon>
+          <span class="btn__text">.btn--composed .btn--content-centered</span>
+        </button>
+      </template>
+    </demo-snippet>
+  </section>
+</body>
+
+</html>

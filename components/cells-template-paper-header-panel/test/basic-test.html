@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <!-- Step 1: import the element to test -->
+    <link rel="import" href="../cells-template-paper-header-panel.html">
+  </head>
+  <body>
+
+    <!-- You can use the document as a place to set up your fixtures. -->
+    <test-fixture id="myEl">
+      <template>
+        <cells-template-paper-header-panel></cells-template-paper-header-panel>
+      </template>
+    </test-fixture>
+    <test-fixture id="myEl2">
+      <template>
+        <cells-template-paper-header-panel mode="waterfall-tall" tall-class="medium-tall"></cells-template-paper-header-panel>
+      </template>
+    </test-fixture>
+    
+    <script>
+    suite('<cells-template-paper-header-panel> tag. ', function() {
+      var myEl, myEl2;
+
+      suiteSetup(function() {
+        myEl = fixture('myEl');
+        myEl2 = fixture('myEl2');
+      });
+
+      suiteTeardown(function() {
+        myEl.remove();
+        myEl2.remove();
+      });
+
+      suite('In general: ', function() {
+        test('should be in document', function() {
+          expect(myEl).not.to.be.undefined;
+        });
+
+        test('The default mode property value is standard', function() {
+          assert.equal(myEl.mode, 'standard');
+        });
+
+        test('The default tallClass property value is tall', function() {
+          assert.equal(myEl.tallClass, 'tall');
+        });
+
+        test('The mode property value changes to introduce the HTML attribute', function() {
+          assert.equal(myEl2.mode, 'waterfall-tall');
+        });
+
+        test('The tallClass property value changes to introduce the HTML attribute', function() {
+          assert.equal(myEl2.tallClass, 'medium-tall');
+        });
+      });
+    });
+    </script>
+  </body>
+</html>

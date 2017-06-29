@@ -1,0 +1,281 @@
+<style is="custom-style">
+:root{
+  /* Border radius */
+  --cells-bdrs-xxl:8px;
+  --cells-bdrs-xl:7px;
+  --cells-bdrs-l:6px;
+  --cells-bdrs-m:5px;
+  --cells-bdrs-s:4px;
+  --cells-bdrs-xs:3px;
+  --cells-bdrs-xxs:2px;
+  --cells-bdrs-zero:0;
+
+  --cells-bdrs-all--xxl:{
+    border-radius:var(--cells-bdrs-xxl);
+  };
+
+  --cells-bdrs-all--xl:{
+    border-radius:var(--cells-bdrs-xl);
+  };
+
+  --cells-bdrs-all--l:{
+    border-radius:var(--cells-bdrs-l);
+  };
+
+  --cells-bdrs-all--m:{
+    border-radius:var(--cells-bdrs-m);
+  };
+
+  --cells-bdrs-all--s:{
+    border-radius:var(--cells-bdrs-s);
+  };
+
+  --cells-bdrs-all--xs:{
+    border-radius:var(--cells-bdrs-xs);
+  };
+
+  --cells-bdrs-all--xxs:{
+    border-radius:var(--cells-bdrs-xxs);
+  };
+
+  --cells-bdrs-all--zero:{
+    border-radius:var(--cells-bdrs-zero);
+  };
+
+  /*left-top-bottom*/
+  --cells-bdrs-left-top-bottom--xxl: {
+    border-top-left-radius:var(--cells-bdrs-xxl);
+    border-bottom-left-radius:var(--cells-bdrs-xxl);
+  };
+
+  --cells-bdrs-left-top-bottom--xl: {
+    border-top-left-radius:var(--cells-bdrs-xl);
+    border-bottom-left-radius:var(--cells-bdrs-xl);
+  };
+
+  --cells-bdrs-left-top-bottom--l: {
+    border-top-left-radius:var(--cells-bdrs-l);
+    border-bottom-left-radius:var(--cells-bdrs-l);
+  };
+
+  --cells-bdrs-left-top-bottom--m: {
+    border-top-left-radius:var(--cells-bdrs-m);
+    border-bottom-left-radius:var(--cells-bdrs-m);
+  };
+
+  --cells-bdrs-left-top-bottom--s: {
+    border-top-left-radius:var(--cells-bdrs-s);
+    border-bottom-left-radius:var(--cells-bdrs-s);
+  };
+
+  --cells-bdrs-left-top-bottom--xs: {
+    border-top-left-radius:var(--cells-bdrs-xs);
+    border-bottom-left-radius:var(--cells-bdrs-xs);
+  };
+
+  --cells-bdrs-left-top-bottom--xxs: {
+    border-top-left-radius:var(--cells-bdrs-xxs);
+    border-bottom-left-radius:var(--cells-bdrs-xxs);
+  };
+
+  --cells-bdrs-left-top-bottom--zero: {
+    border-top-left-radius:var(--cells-bdrs-zero);
+    border-bottom-left-radius:var(--cells-bdrs-zero);
+  };
+
+  /*right-top-bottom*/
+  --cells-bdrs-right-top-bottom--xxl: {
+    border-top-right-radius:var(--cells-bdrs-xxl);
+    border-bottom-right-radius:var(--cells-bdrs-xxl);
+  };
+
+  --cells-bdrs-right-top-bottom--xl: {
+    border-top-right-radius:var(--cells-bdrs-xl);
+    border-bottom-right-radius:var(--cells-bdrs-xl);
+  };
+
+  --cells-bdrs-right-top-bottom--l: {
+    border-top-right-radius:var(--cells-bdrs-l);
+    border-bottom-right-radius:var(--cells-bdrs-l);
+  };
+
+  --cells-bdrs-right-top-bottom--m: {
+    border-top-right-radius:var(--cells-bdrs-m);
+    border-bottom-right-radius:var(--cells-bdrs-m);
+  };
+
+  --cells-bdrs-right-top-bottom--s: {
+    border-top-right-radius:var(--cells-bdrs-s);
+    border-bottom-right-radius:var(--cells-bdrs-s);
+  };
+
+  --cells-bdrs-right-top-bottom--xs: {
+    border-top-right-radius:var(--cells-bdrs-xs);
+    border-bottom-right-radius:var(--cells-bdrs-xs);
+  };
+
+  --cells-bdrs-right-top-bottom--xxs: {
+    border-top-right-radius:var(--cells-bdrs-xxs);
+    border-bottom-right-radius:var(--cells-bdrs-xxs);
+  };
+
+  --cells-bdrs-right-top-bottom--zero: {
+    border-top-right-radius:var(--cells-bdrs-zero);
+    border-bottom-right-radius:var(--cells-bdrs-zero);
+  };
+
+  /*left-top-right*/
+  --cells-bdrs-left-top-right--xxl: {
+    border-top-right-radius:var(--cells-bdrs-xxl);
+    border-top-left-radius:var(--cells-bdrs-xxl);
+  };
+
+  --cells-bdrs-left-top-right--xl: {
+    border-top-right-radius:var(--cells-bdrs-xl);
+    border-top-left-radius:var(--cells-bdrs-xl);
+  };
+
+  --cells-bdrs-left-top-right--l: {
+    border-top-right-radius:var(--cells-bdrs-l);
+    border-top-left-radius:var(--cells-bdrs-l);
+  };
+
+  --cells-bdrs-left-top-right--m: {
+    border-top-right-radius:var(--cells-bdrs-m);
+    border-top-left-radius:var(--cells-bdrs-m);
+  };
+
+  --cells-bdrs-left-top-right--s: {
+    border-top-right-radius:var(--cells-bdrs-s);
+    border-top-left-radius:var(--cells-bdrs-s);
+  };
+
+  --cells-bdrs-left-top-right--xs: {
+    border-top-right-radius:var(--cells-bdrs-xs);
+    border-top-left-radius:var(--cells-bdrs-xs);
+  };
+
+  --cells-bdrs-left-top-right--xxs: {
+    border-top-right-radius:var(--cells-bdrs-xxs);
+    border-top-left-radius:var(--cells-bdrs-xxs);
+  };
+
+  --cells-bdrs-left-top-right--zero: {
+    border-top-right-radius:var(--cells-bdrs-zero);
+    border-top-left-radius:var(--cells-bdrs-zero);
+  };
+
+  /*left-bottom-right*/
+
+  --cells-bdrs-left-bottom-right--xxl: {
+    border-bottom-right-radius:var(--cells-bdrs-xxl);
+    border-bottom-left-radius:var(--cells-bdrs-xxl);
+  };
+
+  --cells-bdrs-left-bottom-right--xl: {
+    border-bottom-right-radius:var(--cells-bdrs-xl);
+    border-bottom-left-radius:var(--cells-bdrs-xl);
+  };
+
+  --cells-bdrs-left-bottom-right--l: {
+    border-bottom-right-radius:var(--cells-bdrs-l);
+    border-bottom-left-radius:var(--cells-bdrs-l);
+  };
+
+  --cells-bdrs-left-bottom-right--m: {
+    border-bottom-right-radius:var(--cells-bdrs-m);
+    border-bottom-left-radius:var(--cells-bdrs-m);
+  };
+
+  --cells-bdrs-left-bottom-right--s: {
+    border-bottom-right-radius:var(--cells-bdrs-s);
+    border-bottom-left-radius:var(--cells-bdrs-s);
+  };
+
+  --cells-bdrs-left-bottom-right--xs: {
+    border-bottom-right-radius:var(--cells-bdrs-xs);
+    border-bottom-left-radius:var(--cells-bdrs-xs);
+  };
+
+  --cells-bdrs-left-bottom-right--xxs: {
+    border-bottom-right-radius:var(--cells-bdrs-xxs);
+    border-bottom-left-radius:var(--cells-bdrs-xxs);
+  };
+
+  --cells-bdrs-left-bottom-right--zero: {
+    border-bottom-right-radius:var(--cells-bdrs-zero);
+    border-bottom-left-radius:var(--cells-bdrs-zero);
+  };
+
+
+  /*left-top*/
+  --cells-bdrs-left-top--xxl: {
+    border-top-left-radius:var(--cells-bdrs-xxl);
+  };
+
+  --cells-bdrs-left-top--xl: {
+    border-top-left-radius:var(--cells-bdrs-xl);
+  };
+
+  --cells-bdrs-left-top--l: {
+    border-top-left-radius:var(--cells-bdrs-l);
+  };
+
+
+  --cells-bdrs-left-top--m: {
+    border-top-left-radius:var(--cells-bdrs-m);
+  };
+
+  --cells-bdrs-left-top--s: {
+    border-top-left-radius:var(--cells-bdrs-s);
+  };
+
+  --cells-bdrs-left-top--xs: {
+    border-top-left-radius:var(--cells-bdrs-xs);
+  };
+
+  --cells-bdrs-left-top--xxs: {
+    border-top-left-radius:var(--cells-bdrs-xxs);
+  };
+
+  --cells-bdrs-left-top--zero: {
+    border-top-left-radius:var(--cells-bdrs-zero);
+  };
+
+
+  /*right-top*/
+  --cells-bdrs-right-top--xxl: {
+    border-top-right-radius:var(--cells-bdrs-xxl);
+  };
+
+  --cells-bdrs-right-top--xl: {
+    border-top-right-radius:var(--cells-bdrs-xl);
+  };
+
+  --cells-bdrs-right-top--l: {
+    border-top-right-radius:var(--cells-bdrs-l);
+  };
+
+  --cells-bdrs-right-top--m: {
+    border-top-right-radius:var(--cells-bdrs-m);
+  };
+
+   --cells-bdrs-right-top--s: {
+    border-top-right-radius:var(--cells-bdrs-s);
+  };
+
+   --cells-bdrs-right-top--xs: {
+    border-top-right-radius:var(--cells-bdrs-xs);
+  };
+
+   --cells-bdrs-right-top--xxs: {
+    border-top-right-radius:var(--cells-bdrs-xxs);
+  };
+
+  --cells-bdrs-right-top--zero: {
+    border-top-right-radius:var(--cells-bdrs-zero);
+  };
+
+
+}
+</style>

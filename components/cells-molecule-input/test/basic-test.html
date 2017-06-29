@@ -1,0 +1,343 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../chai-spies/chai-spies.js"></script>
+
+    <link rel="import" href="../cells-molecule-input.html">
+  </head>
+  <body>
+
+    <cells-molecule-input id="myEl"></cells-molecule-input>
+    <cells-molecule-input id="myEl2" type="password" with-icon></cells-molecule-input>
+    <cells-molecule-input id="myEl3" type="text" value="test" with-icon></cells-molecule-input>
+    <cells-molecule-input id="myEl4" required="required"></cells-molecule-input>
+    <cells-molecule-input id="myEl5" type="email" required="required" auto-validate
+    error-message="Please enter a valid email"></cells-molecule-input>
+    <cells-molecule-input id="myEl6" type="email" required="required" ></cells-molecule-input>
+    <cells-molecule-input id="myEl7" type="email" auto-validate></cells-molecule-input>
+    <cells-molecule-input id="myEl8" type="email" required="required" auto-validate
+     regex='^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+.com$'></cells-molecule-input>
+    <cells-molecule-input id="myEl9" select-all-on-focus></cells-molecule-input>
+
+
+    <script>
+    suite('<cells-molecule-input> tag', function() {
+      var myEl, myEl2, myEl3, myEl4, myEl5, myEl6, myEl7, myEl8, myEl9;
+
+      suiteSetup(function() {
+        myEl = document.querySelector('#myEl');
+        myEl2 = document.querySelector('#myEl2');
+        myEl3 = document.querySelector('#myEl3');
+        myEl4 = document.querySelector('#myEl4');
+        myEl5 = document.querySelector('#myEl5');
+        myEl6 = document.querySelector('#myEl6');
+        myEl7 = document.querySelector('#myEl7');
+        myEl8 = document.querySelector('#myEl8');
+        myEl9 = document.querySelector('#myEl9');
+      });
+
+      suiteTeardown(function() {
+        myEl.remove();
+        myEl2.remove();
+        myEl3.remove();
+        myEl4.remove();
+        myEl9.remove();
+      });
+
+      suite('in general', function() {
+        test('should be in document', function() {
+          expect(myEl).not.to.be.undefined;
+        });
+
+        test('should have a myEl.type value in myEl', function() {
+          expect(myEl.type).to.be.equal('text');
+        });
+
+        test('should have a myEl.name value in myEl', function() {
+          expect(myEl.name).to.be.equal('');
+        });
+
+        test('should have a myEl.focused value in myEl', function() {
+          expect(myEl.focused).to.be.false;
+        });
+
+        test('should have a myEl.disabled value in myEl', function() {
+          expect(myEl.disabled).to.be.false;
+        });
+
+        test('should have a myEl.withIcon value in myEl', function() {
+          expect(myEl.withIcon).to.be.false;
+        });
+
+        test('should have a myEl.value undefined value in myEl', function() {
+          expect(myEl.value).to.be.undefined;
+        });
+
+        test('should have a myEl._visiblePassword value in myEl', function() {
+          expect(myEl._visiblePassword).to.be.false;
+        });
+
+        test('should have a myEl.autoValidate value in myEl', function() {
+          expect(myEl.autoValidate).to.be.false;
+        });
+
+        test('should have a myEl.regex undefined value in myEl', function() {
+          expect(myEl.regex).to.be.null;
+        });
+
+        test('should have a myEl.errorMessage undefined value in myEl', function() {
+          expect(myEl.errorMessage).to.be.null;
+        });
+
+        test('should have a myEl._showError value in myEl', function() {
+          expect(myEl._showError).to.be.false;
+        });
+      });
+
+      suite('check events ', function() {
+
+        test('\'_onIconClick()\' method is called when icon clicked', function() {
+          var spy = chai.spy.on(myEl2, '_onIconClick');
+          myEl2.querySelector('#iconLabel').dispatchEvent(new Event('click'));
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'_onIconClick()\' method called with _visiblePassword=true and type=\'password\'', function() {
+          var spy = chai.spy.on(myEl2, '_onIconClick');
+          myEl2._visiblePassword = true;
+          myEl2.querySelector('#iconLabel').dispatchEvent(new Event('click'));
+          expect(spy).to.have.been.called();
+        });
+
+
+        test('\'_onIconClick()\' method called with _visiblePassword=true and type=\'text\'', function() {
+          var spy = chai.spy.on(myEl3, '_onIconClick');
+          myEl3._visiblePassword = false;
+          myEl3.querySelector('#iconLabel').dispatchEvent(new Event('click'));
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'_onIconClick()\' method called with _visiblePassword=false and type=\'password\'', function() {
+          var spy = chai.spy.on(myEl2, '_onIconClick');
+          myEl2._visiblePassword = false;
+          myEl2.querySelector('#iconLabel').dispatchEvent(new Event('click'));
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'_onIconClick()\' method called with type=\'text\' and icon disabled', function() {
+          var spy = chai.spy.on(myEl3, '_onIconClick');
+          var icon = myEl3.querySelector('#iconLabel');
+          icon.setAttribute('disabled', true);
+          icon.dispatchEvent(new Event('click'));
+          expect(spy).to.have.been.called();
+        });
+
+
+        test('\'_onInputInput()\' method called with length value equals 0', function() {
+          var spy = chai.spy.on(myEl2, '_onInputInput');
+          myEl2.querySelector('#input').dispatchEvent(new Event('input'));
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'_onInputInput()\' method called with length value equals 0 and input required', function() {
+          var spy = chai.spy.on(myEl4, '_onInputInput');
+          myEl4.querySelector('#input').dispatchEvent(new Event('input'));
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'_onInputInput()\' method called with length value greater than 1', function() {
+          var spy = chai.spy.on(myEl3, '_onInputInput');
+          myEl3.value = 'aa';
+          myEl3.querySelector('#input').dispatchEvent(new Event('input'));
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'_onInputInput()\' method called withlength value equals 1', function() {
+          var spy = chai.spy.on(myEl, '_onInputInput');
+          myEl.value = "a";
+          myEl.querySelector('#input').dispatchEvent(new Event('input'));
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'_onInputFocus()\' method called due to focus on input', function() {
+          var spy = chai.spy.on(myEl3, '_onInputFocus');
+          myEl3.querySelector('#input').dispatchEvent(new Event('focus'));
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'_onInputBlur()\' method called due to blur on input', function() {
+          var spy = chai.spy.on(myEl3, '_onInputBlur');
+          myEl3.querySelector('#input').dispatchEvent(new Event('blur'));
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'focus()\' method called due to focus executed on input', function() {
+          var input = myEl3.querySelector('#input');
+          var spy = chai.spy.on(input, 'focus');
+          myEl3.focus();
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'blur()\' method called due to blur executed on input', function() {
+          var input = myEl3.querySelector('#input');
+          var spy = chai.spy.on(input, 'blur');
+          myEl3.blur();
+          expect(spy).to.have.been.called();
+        });
+
+        test('shows an icon by default when the \'iconAlwaysVisible\' property is enabled', function() {
+          myEl.iconAlwaysVisible = true;
+          myEl.withIcon = true;
+
+          expect(myEl.$.icon.hidden).to.be.false;
+        });
+      });
+
+      suite('_isEmpty', function() {
+        test('is true by default', function() {
+          myEl._reset();
+
+          expect(myEl).to.have.property('_isEmpty', true);
+        });
+
+        test('is true when null/undefined value', function() {
+          myEl._reset();
+          myEl.value = null;
+
+          expect(myEl).to.have.property('_isEmpty', true);
+        });
+
+        test('is false when non empty string', function() {
+          myEl._reset();
+          myEl.value = 'any';
+
+          expect(myEl).to.have.property('_isEmpty', false);
+        });
+      });
+
+      suite('type is email', function() {
+
+        test('\'validate()\' method called when autovalidate is true and change the email', function() {
+          debugger;
+          var spy = chai.spy.on(myEl5, 'validate');
+          myEl5.value = "a";
+          myEl5.querySelector('#input').dispatchEvent(new Event('input'));
+          expect(spy).to.have.been.called();
+        });
+
+        test('\'validate()\' method no called when autovalidate is false and change the email', function() {
+          var spy = chai.spy.on(myEl6, 'validate');
+          myEl6.value = "a";
+          myEl6.querySelector('#input').dispatchEvent(new Event('input'));
+          expect(spy).to.not.have.been.called();
+        });
+
+        test('\'validate()\' method called with error value', function() {
+          myEl5.valid= true;
+          myEl5.value = "a";
+          myEl5.validate();
+
+          expect(myEl5).to.have.property('invalid', true);
+        });
+
+        test('\'validate()\' method called with correct value', function() {
+          myEl5.valid= true;
+          myEl5.value = "hello@info.com";
+          myEl5.validate();
+
+          expect(myEl5).to.have.property('invalid', false);
+        });
+
+        test('\'validate()\' method called with autovalidate=true, required=true and empty value', function() {
+          myEl5.valid= true;
+          myEl5.value = "";
+          myEl5.validate();
+
+          expect(myEl5).to.have.property('invalid', true);
+        });
+
+        test('\'validate()\' method called with autovalidate=true, required=false and empty value', function() {
+          myEl7.valid= true;
+          myEl7.value = "";
+          myEl7.validate();
+
+          expect(myEl7).to.have.property('invalid', false);
+        });
+
+        test('\'validate()\' method called with autovalidate=true, required=true and regex correct', function() {
+          myEl8.valid= true;
+          myEl8.value = "hello@info.com";
+          myEl8.validate();
+
+          expect(myEl8).to.have.property('invalid', false);
+        });
+
+        test('\'validate()\' method called with autovalidate=true, required=true and regex incorrect', function() {
+          myEl8.valid= true;
+          myEl8.value = "hello@info.es";
+          myEl8.validate();
+
+          expect(myEl8).to.have.property('invalid', true);
+        });
+
+        test('\'_showError\' method called with autovalidate=true, required=true and incorrect value show error', function() {
+          myEl5.valid= true;
+          myEl5.value = "";
+          myEl5.validate();
+
+          expect(myEl5).to.have.property('invalid', true);
+          expect(myEl5).to.have.property('_showError', true);
+        });
+
+        test('\'_showError\' method called with autovalidate=true, required=true and correct value not show error', function() {
+          myEl5.valid= true;
+          myEl5.value = "hello@info.com";
+          myEl5.validate();
+
+          expect(myEl5).to.have.property('invalid', false);
+          expect(myEl5).to.have.property('_showError', false);
+        });
+      });
+
+      suite('When selectAllOnFocus property is true', function() {
+
+        test('should select all text on focus when it has some text', function(done) {
+          //Given
+          var value = "lorem ipsum dolor sit amet";
+          myEl9.value = value;
+          //When
+          myEl9.querySelector('#input').dispatchEvent(new Event('focus'));
+          //Then
+          flush(function() {
+            expect(myEl9.$.input.selectionStart).to.be.equal(0);
+            expect(myEl9.$.input.selectionEnd).to.be.equal(value.length);
+            done();
+          });
+        });
+
+        test('should not select anything if input is empty', function(done) {
+          //Given
+          var value = "";
+          myEl9.value = value;
+          //When
+          myEl9.querySelector('#input').dispatchEvent(new Event('focus'));
+          //Then
+          flush(function() {
+            expect(myEl9.$.input.selectionStart).to.be.equal(0);
+            expect(myEl9.$.input.selectionEnd).to.be.equal(value.length);
+            done();
+          });
+        });
+
+      });
+
+    });
+    </script>
+  </body>
+</html>

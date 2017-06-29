@@ -1,0 +1,163 @@
+# cells-molecule-input
+
+[![Certificated](https://img.shields.io/badge/certificated-yes-brightgreen.svg)](http://bbva-files.s3.amazonaws.com/cells/bbva-catalog/index.html)
+
+`<cells-molecule-input>` is an input component that has a floating label. This means
+that if the input is empty, the label act as a placeholder of it. Otherwise it
+is floating over the user's input.
+
+It also has an OPTIONAL clickable icon. If the input type is 'password', it allows
+to switch between plain text password and secret text. Otherwise, clicking on it
+will reset the user's input.
+
+Example:
+
+```html
+<cells-molecule-input label="Your Name"></cells-molecule-input>
+<cells-molecule-input label="Password" type="password" value="mySecretNumber"></cells-molecule-input>
+<cells-molecule-input label="I'm Disabled" type="text" disabled></cells-molecule-input>
+<cells-molecule-input label="Your Name" value="Alan Turing"></cells-molecule-input>
+<cells-molecule-input label="I've got an icon" with-icon></cells-molecule-input>
+<cells-molecule-input label="Auto-validating" type="email" required auto-validate></cells-molecule-input>
+<cells-molecule-input auto-validate type="email"  label="custom regex, needs to ends in .com" 
+regex='^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+.com$'></cells-molecule-input>
+
+```
+
+This component supports some configurations.
+
+__Example with password type, with icon for show the value:__
+
+Add `type` attribute and set it to `password`.
+
+```html
+<cells-molecule-input label="Password" type="password" value="mySecretNumber"></cells-molecule-input>
+```
+
+__Example with initial value and default icon:__
+
+Add `type` and set it to `text`. Set the `withIcon` property to `true`.
+
+```html
+<cells-molecule-input label="Your name" type="text" value="Me" with-icon="true"></cells-molecule-input>
+```
+
+__Example with input autofocus:__
+
+```html
+<cells-molecule-input label="Your name" type="text" autofocus></cells-molecule-input>
+```
+
+__Example with number validation on input:__
+
+You can add validations to your input. Set the `validatorName` property to an Array of validations implemented in CellsValidationBehavior.
+Set the `preventInvalidInput` to `true` if you can that the user cannot write in the input if it's an invalid value.
+Set the `allowedPattern` property to a regular expression to prevent the invalid input.
+
+```html
+<cells-molecule-input label="Your name" type="text" value="Me" validator-name="['only-numbers']" prevent-invalid-input="true" allowed-pattern="['0-9']"></cells-molecule-input>
+```
+
+__Example with custom textField icon and icon size__
+
+```html
+<cells-molecule-input type="password" with-icon
+  text-field-icon-size="icon-size-26"
+  text-field-icon="coronita:alert"
+  text-field-icon-toggle="coronita:alarm"></cells-molecule-input>
+```
+
+__Example with an icon always showing:__
+
+Add `type` and set it to `text`. Set the `withIcon` property to `true`.
+Also, set the `iconAlwaysVisible` property to true and (optionally) set the `textFieldIcon` to the desired icon to be shown.
+
+```html
+<cells-molecule-input label="Your name" type="text" with-icon icon-always-visible text-field-icon="coronita:search" text-field-icon-size="icon-size-22"></cells-molecule-input>
+```
+
+__Example with email type__
+
+Add `type` attribute and set it to `email`.
+
+You can add regular expression to your input, set the `regex` property.
+
+Set the `auto-validate` to `true` if you want to auto validate email.
+
+You can validate your email without add `auto-validate` calling to validate method.
+
+```html
+<cells-molecule-input 
+    label="Auto-validating" 
+    type="email"  
+    required
+    auto-validate></cells-molecule-input>
+```
+
+__Example with email type with error message__
+
+```html
+<cells-molecule-input 
+    label="Auto-validating" 
+    type="email"  
+    required
+    auto-validate
+    error-message="Please enter a valid email" >
+</cells-molecule-input>
+```
+
+__Example with email type and regular expresion__
+
+```html
+<cells-molecule-input 
+    label="Auto-validating" 
+    type="email"  
+    required
+    auto-validate
+    regex='^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+.com$'>
+</cells-molecule-input>
+```
+__Example with max length__
+
+```html
+<cells-molecule-input 
+    label="Max length" 
+    type="password"  
+    required
+    auto-validate
+    max-length=10>
+</cells-molecule-input>
+```
+
+## Styling
+
+The following custom properties and mixins are available for styling:
+
+
+| Custom property                      | Description                                  | Default        |
+|:-------------------------------------|:---------------------------------------------| :--------------|
+| --cells-molecule-input-background-color  | input background color                           | #fff           |
+| --cells-molecule-input-border-color      | input border color                           | #ccc           |
+| --cells-molecule-input                   | empty mixin for the :host                    | {}  |
+| --cells-molecule-input-disabled          | empty mixin for the :host([disabled])        | {}  |
+| --cells-molecule-input-focused           | empty mixin for the :host([focused])          | {}  |
+| --cells-molecule-input-with-icon         | empty mixin for cells-molecule-input[with-icon]    | {}             |
+| --cells-molecule-input-invalid-border-bottom | :host[invalid] border bottom          | #db4437  |
+| --cells-molecule-input-invalid           | empty mixin for the :host([invalid])          | {}  |
+| --cells-molecule-input-invalid-input-color | :host[invalid] input color         | #db4437  |
+| --cells-molecule-input-text-field   | empty mixin for the .text-field    | {}        |
+| --cells-molecule-input-invalid-placeholder-color | .text-field color    | #686663  |                        | {}        |
+| --cells-molecule-input-placeholder-color | .text-field color    | #A0A0A3  |
+| --cells-molecule-input-label   | empty mixin for the .text-field__label                            | {}        |
+| --cells-molecule-input-icon                | empty mixin for the icon                     | {}             |
+| --cells-molecule-input-input-color         | input color                                  | #686663        |
+| --cells-molecule-input-placeholder-color | .text-field__input box-shadow(webkit)    | #fff  |
+| --cells-molecule-input-input                | empty mixin for the .text-field__input                     | {}             |
+| --cells-molecule-input-disabled-color      | text and border color for the disabled state | #C7C7C7        |
+| --cells-molecule-input-disabled-color | color of the .text-field__input .text-field__input.has-content ~ .text-field__label                   | #C7C7C7           |
+| --cells-molecule-input-floated-label       | empty mixin for the floated label            | {}             |
+| --cells-molecule-input-has-content         | empty mixin for label when has content | {} |
+| --cells-molecule-input-not-has-content         | empty mixin for :host([with-icon]):not(.has-content) | {} |
+| --cells-molecule-input-number-spin-buttons     | empty mixin for the spin buttons of number type of input | {} |
+| --cells-molecule-input-text-error-color | color for text-error          | #db4437  |
+| --cells-molecule-input-text-error   | empty mixin for the .text-error     | {}        |

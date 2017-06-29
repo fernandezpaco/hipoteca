@@ -1,0 +1,638 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no" name="viewport">
+  <title>Cells template 1 column right sidebar demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html">
+  <link rel="import" href="../../paper-tabs/paper-tabs.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link href="../cells-template-1-column-right-sidebar.html" rel="import">
+  <style is="custom-style">
+    :root {
+      --app__main-padding-bottom: 0;
+      --paper-tabs-selection-bar-color: rgba(180, 192, 227, 1);
+    }
+
+    paper-tab::content paper-ripple {
+      color: #4285f4;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background-color: #FAFAFF;
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.5;
+      color: rgba(89, 128, 236, .88);
+      padding-top: 1.5rem;
+      width: 90%;
+      max-width: 1280px;
+      margin: auto;
+      box-sizing: border-box;
+    }
+
+    .inner.hidden {
+      display: none;
+    }
+
+    .inner {
+      position: relative;
+      padding-top: 4em;
+      margin: auto;
+    }
+
+    h1,
+    h2 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      margin: 0;
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .adjust-demo-snippet {
+      margin-bottom: -12px;
+    }
+
+    h1 svg {
+      width: 26px;
+      height: 26px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: .5rem;
+    }
+
+    .wrapper {
+      margin-top: 236px;
+      height: 50vh;
+      position: relative;
+      margin-bottom: 180px;
+    }
+
+    demo-snippet::content .code-container {
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 100%;
+      box-shadow: 0 0px 0px 1px rgba(218, 224, 241, 0.80);
+      transform: translateY(-100%)
+    }
+
+    demo-snippet::content .demo {
+      padding: 0;
+      background-color: transparent;
+    }
+
+    cells-template-1-column-right-sidebar {
+      overflow: visible;
+    }
+
+    cells-template-1-column-right-sidebar::content .app-container {
+      border: 1px dashed rgba(180, 192, 227, 1);
+      padding: 2px;
+    }
+
+    cells-template-1-column-right-sidebar::content .app__section {
+      padding: 1px;
+      border: 1px solid rgba(180, 192, 227, 1);
+      width: 77%;
+      box-sizing: border-box;
+    }
+
+    cells-template-1-column-right-sidebar[drawer-direction="left"]::content .app__section {
+      width: 84%;
+      float: right;
+    }
+
+    cells-template-1-column-right-sidebar::content .app__header {
+      background-color: rgba(255, 255, 255, 1);
+      border-bottom: 1px solid rgba(180, 192, 227, 1);
+      min-height: 60px;
+      position: relative;
+    }
+
+    cells-template-1-column-right-sidebar::content .app__main {
+      position: relative;
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    cells-template-1-column-right-sidebar::content .app__main:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 2px;
+      bottom: 2px;
+      right: 2px;
+      width: 7px;
+      border-radius: 3px;
+      background-color: rgba(180, 192, 227, .5);
+    }
+
+    cells-template-1-column-right-sidebar[drawer-direction="left"]::content .app__complementary {
+      right: auto!important;
+      left: 2px!important;
+      width: calc(16% - 3px);
+    }
+
+    cells-template-1-column-right-sidebar::content .app__complementary {
+      background-color: rgba(255, 255, 255, 1);
+      border: 1px solid rgba(180, 192, 227, 1);
+      width: calc(23% - 3px);
+      box-sizing: border-box;
+      top: 3px;
+      right: 2px!important;
+    }
+
+    cells-template-1-column-right-sidebar::content .app__footer {
+      position: relative;
+      border-top: 1px solid rgba(180, 192, 227, 1);
+      background-color: rgba(255, 255, 255, 1);
+      min-height: 40px
+    }
+
+    cells-template-1-column-right-sidebar::content .app__transactional {
+      position: relative;
+      top: 8px;
+      height: 76px;
+      background-color: rgba(255, 255, 255, 1);
+      border: 1px dashed rgba(180, 192, 227, 1);
+      outline: 1px solid rgba(180, 192, 227, 1);
+      outline-offset: -3px;
+    }
+
+    cells-template-1-column-right-sidebar::content .app__header > div,
+    cells-template-1-column-right-sidebar::content .app__main > div,
+    cells-template-1-column-right-sidebar::content .app__complementary > div,
+    cells-template-1-column-right-sidebar::content .app__footer > div,
+    cells-template-1-column-right-sidebar::content .app__transactional > div {
+      font-size: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 1.1;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    /* page 2*/
+
+    .horizontal,
+    .vertical,
+    .static {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .vertical,
+    .static {
+      flex-direction: column;
+    }
+
+    .horizontal--forwards .in--horizontal {
+      transform: translateX(calc(-50% + 30px));
+    }
+
+    .horizontal--backwards .in--horizontal {
+      order: -1;
+      transform: translateX(calc(50% - 30px));
+    }
+
+    .btn {
+      display: inline-block;
+      background: #FFFFFF;
+      border-radius: 8px;
+      text-transform: uppercase;
+      text-align: center;
+      font-family: sans-serif;
+      font-size: .682rem;
+      padding: .2em 1.6em;
+      line-height: 1.2;
+      color: #224FBD;
+      white-space: nowrap;
+    }
+
+    .out,
+    .in {
+      width: 120px;
+      position: relative;
+    }
+
+    .out .btn,
+    .in .btn {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .out {
+      border: 1px solid #224FBD;
+      box-shadow: inset 0 0 0 4px #fff;
+      background-color: #224FBD;
+      border-radius: 8px;
+      height: 160px;
+      z-index: 1;
+      opacity: .9;
+    }
+
+    .in {
+      border: 1px dotted #FF007F;
+      background-color: rgba(255, 0, 127, 0.35);
+      height: 130px;
+    }
+
+    .vertical--down .in--vertical {
+      transform: scale(1.08);
+    }
+
+    .vertical--down .out--vertical {
+      transform: translateY(-65%);
+      margin-bottom: -100px;
+    }
+
+    .vertical--down .in--vertical .btn {
+      bottom: auto;
+      top: 6px;
+    }
+
+    .vertical--up .in--vertical {
+      transform: scale(1.08) translateY(-65%);
+      z-index: 2;
+      margin-bottom: -90px;
+    }
+
+    .vertical--up .out--vertical .btn {
+      bottom: auto;
+      top: 6px;
+    }
+
+    .static .in--static {
+      transform: scale(1.01);
+      height: 160px;
+    }
+
+    .static .out--static {
+      transform: translateY(-100%);
+      margin-bottom: -160px;
+      opacity: .5;
+    }
+
+    .static .in--static .btn {
+      bottom: auto;
+      top: 8px;
+    }
+
+    .static--backwards .out--static .btn {
+      bottom: auto;
+      top: 8px;
+    }
+
+    .static--backwards .in--static .btn {
+      top: auto;
+      bottom: 8px;
+    }
+
+    .wrapper-animation .section {
+      box-sizing: border-box;
+      border-bottom: 1px solid rgba(45, 46, 48, .2);
+      overflow: hidden;
+      padding: 2em 0;
+    }
+
+    .type-anim {
+      float: left;
+      min-width: 50%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      align-items: center;
+    }
+
+    .wrapper-animation h1,
+    .wrapper-animation h2,
+    .wrapper-animation p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrapper-animation h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .wrapper-animation h1 span {
+      text-transform: uppercase;
+    }
+
+    .wrapper-animation p {
+      font-size: .9rem;
+      line-height: 1.2;
+    }
+
+    .wrapper-animation h1 + p {
+      margin-bottom: .79rem;
+      font-size: .96rem;
+    }
+
+    .wrapper-animation h1 ~ p span {
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    .wrapper-animation h1 ~ p:nth-child(4) span {
+      margin-right: 12px;
+    }
+
+    .wrapper-animation h2 {
+      margin: 2.5rem 0 .75rem 0;
+      text-transform: uppercase;
+      font-size: .8rem;
+    }
+
+    .wrapper-animation figure {
+      display: inline-block;
+      margin: 0;
+      padding: .5em;
+    }
+
+    .wrapper-animation svg {
+      fill: rgba(89, 128, 236, .88);
+      width: 24px;
+      height: 24px;
+    }
+
+    .icon--up svg {
+      transform: rotate(180deg);
+    }
+
+    .icon--right svg {
+      transform: rotate(90deg);
+    }
+
+    .icon--left svg {
+      transform: rotate(-90deg);
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>
+    <span>
+      <svg  class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+        <path fill="#b4c0e3" d="M32.125 1.945c0 0.554-0.45 1.004-1.004 1.004h-30.117c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h30.117c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M32.125 5.961c0 0.554-0.45 1.004-1.004 1.004h-30.117c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h30.117c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 9.977c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 13.992c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 18.008c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 22.023c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 26.039c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M32.125 9.977c0 0.554-0.45 1.004-1.004 1.004h-10.039c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h10.039c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 30.055c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M32.125 13.992c0 0.554-0.45 1.004-1.004 1.004h-10.039c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h10.039c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M32.125 18.008c0 0.554-0.45 1.004-1.004 1.004h-10.039c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h10.039c0.554 0 1.004 0.45 1.004 1.004z"></path>
+      </svg>
+    </span>
+    Template one column right sidebar
+  </h1>
+
+  <paper-tabs selected="0">
+
+    <paper-tab data-tab="demo-2">ANIMATIONS</paper-tab>
+  </paper-tabs>
+
+
+
+  <div class="inner" data-tab="demo-2">
+    <div class="wrapper-animation">
+      <section class="section">
+        <h1>Animation <span>Horizontal</span></h1>
+        <p>Both pages, the output and input have a horizontal animation, whether navigating forward and backward</p>
+        <p><span>Page out</span> {animationType:horizontal}</p>
+        <p><span>Page in</span> {animationType:horizontal}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="horizontal horizontal--forwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--right">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+          <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+        </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="horizontal horizontal--backwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+          </svg>
+          </figure>
+        </article>
+      </section>
+
+      <section class="section">
+        <h1>Animation <span>vertical Down Forwards</span></h1>
+        <p>The output page has a vertical animation and input remains static when we go forward; to back both have a horizontal
+          animation
+        </p>
+        <p><span>Page out</span> {animationType:verticalDownForwards}</p>
+        <p><span>Page in</span> {animationType:horizontal}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+
+          <div class="vertical vertical--down">
+            <div class="in in--vertical"><span class="btn">in static</span></div>
+            <div class="out out--vertical"><span class="btn">out</span></div>
+          </div>
+          <figure class="icon icon--down">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+      <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+  </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="horizontal horizontal--backwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+          </svg>
+          </figure>
+        </article>
+      </section>
+
+      <section class="section">
+        <h1>Animation <span>vertical Down Backwards</span></h1>
+        <p>Both pages have a horizontal animation when we go forward; to back the output page has a vertical animation and input
+          remains static</p>
+        <p><span>Page out</span> {animationType:horizontal}</p>
+        <p><span>Page in</span> {animationType:verticalDownBackwards}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="horizontal horizontal--forwards">
+
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--right">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+          <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+        </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+
+          <div class="vertical vertical--down">
+            <div class="in in--vertical"><span class="btn">in static</span></div>
+            <div class="out out--vertical"><span class="btn">out</span></div>
+          </div>
+          <figure class="icon icon--down">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+      <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+  </svg>
+          </figure>
+        </article>
+      </section>
+
+      <section class="section">
+        <h1>Animation <span>vertical up</span></h1>
+        <p>Both pages, the output and input have a vertical animation, whether navigating forward and backward</p>
+        <p><span>Page out</span> {animationType:verticalUp}</p>
+        <p><span>Page in</span> {animationType:verticalUp}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="vertical vertical--up">
+            <div class="out out--vertical"><span class="btn">out static</span></div>
+            <div class="in in--vertical"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--up">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+      <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+  </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="vertical vertical--down">
+            <div class="in in--vertical"><span class="btn">in static</span></div>
+            <div class="out out--vertical"><span class="btn">out</span></div>
+          </div>
+          <figure class="icon icon--down">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+      <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+  </svg>
+          </figure>
+        </article>
+      </section>
+      <section class="section">
+        <h1>Animation <span>Horizontal ever</span></h1>
+        <p>Both pages, the output and the input have a horizontal animation, whether navigating forward and back</p>
+        <p><span>Page out</span>or in {animationType:horizontalEver}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="horizontal horizontal--forwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--right">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+          <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+        </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="horizontal horizontal--backwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+          </svg>
+          </figure>
+        </article>
+      </section>
+            <section class="section">
+        <h1>Animation <span>Horizontal for sibling pages</span></h1>
+        <p>Both pages, the output and the input have a horizontal animation, whether navigating forward and back when the pages are sibling and the main are not the first page</p>
+        <p><span>Page out</span>{animationType:static}</p>
+        <p><span>Page in</span>{animationType:horizontalEver}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="horizontal horizontal--forwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--right">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+          <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+        </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="horizontal horizontal--backwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+          </svg>
+          </figure>
+        </article>
+      </section>
+      <section class="section">
+        <h1>Animation <span>static ever</span></h1>
+        <p>Both pages, the output and the input have a static animation (no animation visible), whether navigating forward and
+          back
+        </p>
+        <p><span>Page out</span>or in {animationType:staticEver}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="static">
+            <div class="in in--static"><span class="btn">in static</span></div>
+            <div class="out out--static"><span class="btn">out static</span></div>
+          </div>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="static static--backwards">
+            <div class="in in--static"><span class="btn">in static</span></div>
+            <div class="out out--static"><span class="btn">out static</span></div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </div>
+</body>
+
+</html>

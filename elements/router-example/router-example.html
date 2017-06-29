@@ -1,0 +1,115 @@
+<dom-module id="router-example">
+  <style>
+    :host {
+      display: block;
+    }
+    button{
+      margin-bottom: 14px;
+    }
+
+    pre {
+      font-size:.9em;
+    }
+
+     table {
+      border-collapse: collapse;
+      text-align: left;
+      width: 100%;
+      border-color: black;
+      border: 1px solid;
+    }
+
+      table td, table th {
+        padding: 3px 10px;
+      }
+      table thead th {
+        background-color: #006699;
+        color:#FFFFFF;
+        font-size: 12px;
+        font-weight: bold;
+        border-left: 1px solid #0070A8; }
+      table thead th:first-child {
+        border: none;
+      }
+      table tbody td {
+        color: #00496B;
+        border-left: 1px solid black;
+        font-size: 14px;
+        font-weight: normal;
+      }
+      table tbody.alt td {
+        background:#E1EEF4;
+        color:#00496B; }
+      table tbody td:first-child {
+        border-left: none;
+      }
+      table tbody tr:last-child td {
+        border-bottom: none;
+      }
+  </style>
+  <template>
+    <h1>Wellcome to this page with the state param  [[stateParam]]</h1>
+
+    <p>The state params refers to the params put in the url  /routerExample/:stateParam/ if the url don't have state params this params will go to query params</p>
+
+    <h1>The next thing is the "query params"</h1>
+
+    <p>First query param [[queryParam]]</p>
+
+    <p>Second param [[queryParamTwo]]</p>
+
+
+    <button on-tap="_goToHome">Volver a la home</button>
+
+
+    <table>
+                <thead>
+                    <tr>
+                        <th>Connections of router example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="alt">
+<pre>
+"cellsConnections": {
+  "in": {},
+  "out": {},
+  "params": {
+    "stateParam": "stateParam",
+    "queryParam": "queryParamGlobal",
+    "queryParamTwo": "queryParamTwo"
+  }
+}
+</pre>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+  </template>
+
+<script>
+(function() {
+  Polymer({
+    is: 'router-example',
+    properties: {
+      stateParam: {
+        type: String
+      },
+      queryParam: {
+        type: String
+      },
+      queryParamTwo: {
+        type: Number
+      }
+    },
+
+    _goToHome: function() {
+      this.fire('home-event');
+    }
+  });
+})();
+</script>
+
+</dom-module>

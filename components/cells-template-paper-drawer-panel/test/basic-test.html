@@ -1,0 +1,195 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../test-fixture/test-fixture-mocha.js"></script>
+
+  <link rel="import" href="../../polymer/polymer.html">
+  <link rel="import" href="../../promise-polyfill/promise-polyfill-lite.html">
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+
+  <link rel="import" href="../cells-template-paper-drawer-panel.html">
+</head>
+
+<body>
+
+  <test-fixture id="myEl">
+    <template>
+      <cells-template-paper-drawer-panel></cells-template-paper-drawer-panel>
+    </template>
+  </test-fixture>
+
+  <script>
+    /*global describe, beforeEach, context, it, sinon, fixture */
+    var myEl;
+
+    describe('<cells-template-paper-drawer-panel>', function() {
+      beforeEach(function() {
+        myEl = fixture('myEl');
+        myEl.set('disableScrollLock', false);
+      });
+
+      context('functions work properly', function() {
+
+        it('toggleMenu should called when toggle-menu event is fired', function(done) {
+          var mySpy = sinon.spy(myEl, 'toggleMenu');
+          myEl.fire('toggle-menu');
+          flush(function() {
+            expect(mySpy).to.have.been.called;
+            mySpy.restore();
+            done();
+          });
+        });
+
+        it('_addOverflow should called when overlay-closed event is fired', function(done) {
+          var mySpy = sinon.spy(myEl, '_addOverflow');
+          myEl.fire('overlay-closed');
+          flush(function() {
+            expect(mySpy).to.have.been.called;
+            mySpy.restore();
+            done();
+          });
+        });
+
+        it('_removeOverflow should called when overlay-opening event is fired', function(done) {
+          var mySpy = sinon.spy(myEl, '_removeOverflow');
+          myEl.fire('overlay-opening');
+          flush(function() {
+            expect(mySpy).to.have.been.called;
+            mySpy.restore();
+            done();
+          });
+        });
+
+        it('_resetLayerScroll should called template-cached is fired', function(done) {
+          var mySpy = sinon.spy(myEl, '_resetLayerScroll');
+          myEl.fire('template-cached');
+          flush(function() {
+            expect(mySpy).to.have.been.called;
+            mySpy.restore();
+            done();
+          });
+        });
+
+        it('_onChangeAnimation should been called when change-template-animation is fired', function(done) {
+          var mySpy = sinon.spy(myEl, '_onChangeAnimation');
+          myEl.fire('change-template-animation', {animationType: 'staticEver'});
+          flush(function() {
+            expect(mySpy).to.have.been.called;
+            expect(myEl.animationType).to.be.equal('staticEver');
+            mySpy.restore();
+            done();
+          });
+        });
+
+        it('_onContentScroll should been called when content-scroll is fired', function(done) {
+          var mySpy = sinon.spy(myEl, '_onContentScroll');
+          myEl.$$('paper-scroll-header-panel').fire('content-scroll', {target: myEl.$$('paper-scroll-header-panel').scroller});
+          flush(function() {
+            expect(mySpy).to.have.been.called;
+            mySpy.restore();
+            done();
+          });
+        });
+
+        it('scrollItemIntoView should calls "scrollIntoView" method', function(done) {
+          var fakeChild = document.createElement('div');
+          fakeChild.setAttribute('id', 'fake-child');
+          var mySpy = sinon.spy(fakeChild, 'scrollIntoView');
+          myEl.querySelector('#app__main').appendChild(fakeChild);
+          flush(function() {
+            expect(mySpy).to.have.been.called;
+            done();
+          });
+          myEl.scrollItemIntoView({
+            data: fakeChild
+          });
+        });
+
+        [
+          {},
+          undefined,
+          null,
+          false,
+          true,
+          1,
+          1.00,
+          '',
+          '{}',
+          {data:null},
+          {data:{item:null}},
+          {data:{item:''}},
+          {data:{item:1}},
+          {data:{item:1.00}},
+          {data:{item:false}},
+          {data:{item:true}}
+        ].forEach(function(payload) {
+          it('scrollItemIntoView doesn\'t work with invalid payload: ' + JSON.stringify(payload), function(done) {
+            var fakeChild = document.createElement('div');
+            fakeChild.setAttribute('id', 'fake-child');
+            var mySpy = sinon.spy(fakeChild, 'scrollIntoView');
+            myEl.querySelector('#app__main').appendChild(fakeChild);
+            flush(function() {
+              expect(mySpy).not.to.have.been.called;
+              done();
+            });
+            myEl.scrollItemIntoView(payload);
+          });
+        });
+
+        it('scrollItemIntoView works with Event', function(done) {
+          var fakeChild = document.createElement('span');
+          var mySpy = sinon.spy(fakeChild, 'scrollIntoView');
+          myEl.querySelector('#app__main').appendChild(fakeChild);
+          flush(function() {
+            expect(mySpy).to.have.been.called;
+            done();
+          });
+          myEl.scrollItemIntoView((new CustomEvent('fake-event', {detail:{data: fakeChild}})));
+        });
+
+        it('fires "cells-scroll-complete" event after scrolling', function(done) {
+          var fakeChild = document.createElement('span');
+          myEl.querySelector('#app__main').appendChild(fakeChild);
+          myEl.addEventListener('cells-scroll-complete', function _onEvent() {
+            myEl.removeEventListener('cells-scroll-complete', _onEvent);
+            done();
+          }, false);
+          myEl.scrollItemIntoView({
+            data: fakeChild
+          });
+        });
+
+        it('calculates scrolling delay based on Date.now method', function(done) {
+          window.performance = null;
+          var fakeChild = document.createElement('span');
+          myEl.querySelector('#app__main').appendChild(fakeChild);
+          myEl.reportScrollEnd = true;
+          myEl.addEventListener('cells-scroll-complete', function _onEvent() {
+            myEl.removeEventListener('cells-scroll-complete', _onEvent);
+            done();
+          }, false);
+          myEl.scrollItemIntoView({
+            data: fakeChild
+          });
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

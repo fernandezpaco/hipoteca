@@ -1,0 +1,111 @@
+<style is="custom-style">
+  :root {
+    --demo-paper-tabs: var(--cells-B2-50_colour, #009ee5);
+    --paper-tabs-selection-bar-color: var(--demo-paper-tabs);
+    --paper-tab-ink: var(--demo-paper-tabs);
+
+    --cells-molecule-input: {
+       margin-bottom: 10px;
+       }
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+  body {
+    margin: 0;
+    background: #fff;
+  }
+
+  paper-tabs {
+    background: #f0f0f0;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0, .2);
+  }
+
+  paper-tab {
+    min-width: 200px;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .lang-selector {
+    font-family: sans-serif;
+    font-size: 14px;
+  }
+  .lang { padding-right: 5px; }
+  .selector {
+    background: #fff;
+    display: inline-block;
+    min-width: 60px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px -2px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 5px 10px;
+    border-radius: 0;
+    font: inherit;
+    color: #848484;
+    border: 1px solid #848484;
+  }
+
+
+  .result {
+    border-radius: 2px;
+    flex: 1;
+    margin-top: -15px;
+  }
+
+  .kv-list {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .kv-list__key {
+    font-weight: 500;
+    float: left;
+    clear: left;
+  }
+  .kv-list__key::after {
+    content: ":";
+    display: inline-block;
+    margin-right: 2px;
+  }
+  .kv-list__value {
+    overflow: hidden;
+  }
+  
+  .emailValidation {
+    margin-top: 10px;
+  }
+ 
+  .emailValidation > span {
+    padding: 10px;
+    margin-bottom: 10px;
+    display: block;
+    background: #F4F7F5;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    *, *:before, *:after {
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hidden-mobile {
+      display: none !important;
+    }
+
+    paper-tab { min-width: 0; }
+  }
+</style>

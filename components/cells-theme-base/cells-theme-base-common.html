@@ -1,0 +1,193 @@
+<style is="custom-style">
+  :root {
+    /* PRIMARY BLUES */
+    --cells-BM1_colour: #003f8C;
+    --cells-BM2_colour: #004b8C;
+    --cells-BM3_colour: #00559D;
+    --cells-BM4_colour: #0069B1;
+    --cells-BM6_colour: #B6CEEA;
+    --cells-BM6-50_colour: #DAE6F4;
+    --cells-BM7_colour: #D5E2EE;
+    --cells-BM8_colour: #EAF1F7;
+    --cells-BM8-50_colour: #F4F8FB;
+    --cells-BM9_colour:  #D2E5EB;
+    --cells-BM10_colour: #E2FAFE;
+    --cells-BM11_colour: #DDE3EA;
+    --cells-BM12_colour: #F3F5F7;
+    --cells-BM13_colour: #adcada;
+    --cells-BM14_colour: #0981c0;
+    --cells-BM15_colour: #7FB6DF;
+    --cells-BM16_colour: #0065BD;
+    --cells-BM17_colour: #006DC0;
+
+
+
+
+    --cells-B1_colour: #006EC1;
+    --cells-B1-30_colour: #AACEE9;
+    --cells-B1-60_colour: #77B1DD;
+    --cells-B2_colour: #009EE5;
+    --cells-B2-50_colour: #009ee5;
+    --cells-BS1_colour: #006cc4;
+    --cells-BS2_colour: #4cbbee;
+
+
+    /* GREY SCALE */
+    --cells-KMW_colour: #fff;
+    --cells-KM1_colour: #333;
+    --cells-KM1-50_colour: #3B3E45;
+    --cells-KM2_colour: #434A58;
+    --cells-KM3_colour: #717780;
+    --cells-KM4_colour: #797F85;
+    --cells-KM5_colour: #DBDCDF;
+    --cells-KM6_colour: #E5E5E5;
+    --cells-KM7_colour: #F0F2EF;
+    --cells-KM8_colour: #F4F7F5;
+    --cells-KM9_colour: #d7e8ec;
+    --cells-KM10_colour: #C0C2C4;
+    --cells-KM11_colour: #E0E1E4;
+    --cells-KM12_colour: #212121;
+    --cells-KM13_colour: #434957;
+    --cells-KM14_colour: #383d4a;
+    --cells-KMB_colour: #000000;
+    --cells-KM15_colour: #F6F7F8;
+    --cells-KM16_colour: #ECF2FB;
+
+
+
+
+
+    /* SECONDARY REDS */
+    --cells-RM1_colour: #81003D;
+    --cells-RM2_colour: #9D004A;
+    --cells-RM3_colour: #B7085B;
+    --cells-RM4_colour: #CC0966;
+    --cells-RM5_colour: #F4CCDF;
+    --cells-RM6_colour: #F7E9E9;
+
+
+    /* SECONDARY GREENS */
+    --cells-GM1_colour: #347201;
+    --cells-GM2_colour: #428B12;
+    --cells-GM3_colour: #499900;
+    --cells-GM4_colour: #44A718;
+    --cells-GM5_colour: #59C000;
+    --cells-GM6_colour: #D5E7BC;
+
+    /* SECONDARY YELLOWS */
+    --cells-YM1_colour: #F2D7BB;
+    --cells-YM2_colour: #FAEBB9;
+    --cells-YM3_colour: #FBF1D0;
+    --cells-YM4_colour: #FFFAEB;
+
+	  --cells-YM5_colour: #E0F6FC;
+
+
+    /* SECONDARY ORANGES */
+    --cells-OM0_colour: #F39200;
+    --cells-OM1_colour: #F6891E;
+    --cells-OM2_colour: #F3C47F;
+    --cells-OM3_colour: #EC853B;
+
+
+    /* BASE COLORS*/
+    --cells-V1_colour: #4c9be9;
+    --cells-V2_colour: #59a700;
+    --cells-V3_colour: #e59600;
+    --cells-V4_colour: #fdbd2c;
+    --cells-V5_colour: #bcbec0;
+    --cells-transparent_colour: transparent;
+
+    --cells-B1_colour_alpha: rgba(0, 110, 193, 0.30);
+
+    /*---skeleton---*/
+    --cells-skeleton-color-pulse-step1: rgb(229, 229, 229);
+    --cells-skeleton-color-pulse-step2: rgb(241, 241, 241);
+    --cells-skeleton-color-border: rgba(215, 215, 215, .5);
+
+    /* ALTER */
+    --cells-border-white: 1px solid var(--cells-KMW_colour);
+    --cells-text-shadow-white: 1px 1px 0 var(--cells-KMW_colour);
+    --cells-box-shadow-general: 0 0 2px 4px var(--cells-BM8_colour);
+    --cells-none: none;
+    --cells-transition-button-general: box-shadow 200ms ease-in;
+
+    /* BUTTONS COLOR*/
+    --cells-button-primary-color: var(--cells-KMW_colour);
+    --cells-button-primary-color-hover: var(--cells-KMW_colour);
+    --cells-button-primary-color-active: var(--cells-KMW_colour);
+
+    --cells-button-primary-bg: var(--cells-B1_colour);
+    --cells-button-primary-bg-hover: var(--cells-BM3_colour);
+    --cells-button-primary-bg-active: var(--cells-BM3_colour);
+
+    --cells-button-primary-outline: var(--cells-transparent_colour);
+    --cells-button-primary-outline-hover: var(--cells-transparent_colour);
+    --cells-button-primary-outline-active: var(--cells-transparent_colour);
+
+    /**/
+    --cells-button-secondary-color: var(--cells-B1_colour);
+    --cells-button-secondary-color-hover: var(--cells-B1_colour);
+    --cells-button-secondary-color-active: var(--cells-B1_colour);
+
+    --cells-button-secondary-bg: var(--cells-KMW_colour);
+    --cells-button-secondary-bg-hover: var(--cells-KMW_colour);
+    --cells-button-secondary-bg-active: var(--cells-KMW_colour);
+
+    --cells-button-secondary-outline: var(--cells-B1_colour);
+    --cells-button-secondary-outline-hover: var(--cells-B1_colour);
+    --cells-button-secondary-outline-active: var(--cells-B1_colour);
+
+    /**/
+    --cells-button-tertiary-color: var(--cells-KMW_colour);
+    --cells-button-tertiary-color-hover: var(--cells-KMW_colour);
+    --cells-button-tertiary-color-active: var(--cells-KMW_colour);
+
+    --cells-button-tertiary-bg: var(--cells-GM4_colour);
+    --cells-button-tertiary-bg-hover: var(--cells-GM5_colour);
+    --cells-button-tertiary-bg-active: var(--cells-GM5_colour);
+
+    --cells-button-tertiary-outline: var(--cells-transparent_colour);
+    --cells-button-tertiary-outline-hover: var(--cells-transparent_colour);
+    --cells-button-tertiary-outline-active: var(--cells-transparent_colour);
+
+    /**/
+    --cells-button-quaternary-color: var(--cells-KMW_colour);
+    --cells-button-quaternary-color-hover: var(--cells-KMW_colour);
+    --cells-button-quaternary-color-active: var(--cells-KMW_colour);
+
+    --cells-button-quaternary-bg: var(--cells-RM3_colour);
+    --cells-button-quaternary-bg-hover: var(--cells-RM3_colour);
+    --cells-button-quaternary-bg-active: var(--cells-RM3_colour);
+
+    --cells-button-quaternary-outline: var(--cells-transparent_colour);
+    --cells-button-quaternary-outline-hover: var(--cells-transparent_colour);
+    --cells-button-quaternary-outline-active: var(--cells-transparent_colour);
+
+    /**/
+    --cells-button-neutral-color: var(--cells-B1_colour);
+    --cells-button-neutral-color-hover: var(--cells-B1_colour);
+    --cells-button-neutral-color-active: var(--cells-B1_colour);
+
+    --cells-button-neutral-bg: var(--cells-transparent_colour);
+    --cells-button-neutral-bg-hover: var(--cells-transparent_colour);
+    --cells-button-neutral-bg-active: var(--cells-transparent_colour);
+
+    --cells-button-neutral-outline: var(--cells-BM6_colour);
+    --cells-button-neutral-outline-hover: var(--cells-BM6_colour);
+    --cells-button-neutral-outline-active: var(--cells-BM6_colour);
+
+    --cells_colour: #ECF2FB;
+    --cells-orange_adv:       var(--cells-OM2_colour);
+    --cells-orange_adv_icon:  var(--cells-OM3_colour);
+    --cells-navMenuOpt_colour: var(--cells-BM14_colour);
+    --cells-blue_adv:         var(--cells-BM15_colour);
+    --cells-blue_adv_icon:    var(--cells-BM16_colour);
+    --cells-blue_dark_adv:    var(--cells-BM17_colour);
+    --cells-navMenuBg_colour: var(--cells-KM13_colour);
+    --cells-navMenuBgDark_colour: var(--cells-KM14_colour);
+    --cells-pieBg_colour:     var(--cells-BM8_colour);
+    --cells-black_colour:     var(--cells-KMB_colour);
+    --cells-background-primary: var(--cells-KMW_colour);
+  }
+</style>

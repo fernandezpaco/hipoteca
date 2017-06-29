@@ -1,0 +1,140 @@
+<dom-module id="cells-molecule-input-styles"><template><style>
+:host {
+  display: block;
+  font-family: var(--cells-fontDefault, --fontDefault);
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+:host {
+  display: block;
+  position: relative;
+  background-color: var(--cells-molecule-input-background-color, #fff);
+  border: 1px solid var(--cells-molecule-input-border-color, #ccc);
+  @apply (--cells-molecule-input); }
+
+:host([disabled]) {
+  border-color: var(--cells-molecule-input-disabled-color, #C7C7C7);
+  @apply (--cells-molecule-input-disabled); }
+
+:host([focused]) {
+  @apply (--cells-molecule-input-focused); }
+  :host([focused]) .text-field__icon {
+    opacity: 1; }
+
+:host([with-icon]) {
+  padding-right: 3.75rem;
+  @apply (--cells-molecule-input-with-icon); }
+  :host([with-icon]) .text-field__input {
+    padding-right: 0; }
+  :host([with-icon]):not(.has-content) {
+    padding-right: 0;
+    @apply (--cells-molecule-input-not-has-content); }
+
+:host([invalid]) {
+  border-bottom: 1px solid var(--cells-molecule-input-invalid-border-bottom, #db4437);
+  @apply (--cells-molecule-input-invalid); }
+  :host([invalid]) input {
+    color: var(--cells-molecule-input-invalid-input-color, #db4437); }
+  :host([invalid]) .text-field__label {
+    color: var(--cells-molecule-input-invalid-placeholder-color, #686663); }
+
+.text-field {
+  position: relative;
+  display: block;
+  min-height: 3.75rem;
+  pointer-events: none;
+  @apply (--cells-molecule-input-text-field); }
+  .text-field__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1.375rem 1.1875rem 1.25rem;
+    color: var(--cells-molecule-input-placeholder-color, #A0A0A3);
+    white-space: nowrap;
+    line-height: 1;
+    width: 100%;
+    transition: all 200ms;
+    opacity: 0.5;
+    @apply (--cells-molecule-input-label); }
+  .text-field__icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    cursor: pointer;
+    height: 100%;
+    text-align: center;
+    padding: 0 1.0625rem;
+    width: 3.125rem;
+    opacity: 0;
+    @apply (--cells-molecule-input-icon); }
+    .text-field__icon[hidden] {
+      display: none; }
+    .text-field__icon.icon-always-visible {
+      opacity: 1; }
+  .text-field__label, .text-field__icon {
+    z-index: 1;
+    transition: all 200ms; }
+  .text-field__input {
+    color: var(--cells-molecule-input-input-color, #686663);
+    width: 100%;
+    height: 100%;
+    padding: 0 1.1875rem;
+    line-height: 1.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    background: transparent;
+    pointer-events: auto;
+    @apply (--cells-molecule-input-input); }
+    .text-field__input:-webkit-autofill {
+      box-shadow: 0 0 0px 1000px var(--cells-molecule-input-background, #fff) inset; }
+    .text-field__input.has-content {
+      padding: 1.25rem 1.1875rem 0 1.1875rem;
+      @apply (--cells-molecule-input-has-content); }
+    .text-field__input.has-content ~ .text-field__label {
+      color: var(--cells-molecule-input-disabled-color, #C7C7C7);
+      opacity: .5;
+      font-size: 0.875rem;
+      -webkit-transform: translateY(-10px);
+              transform: translateY(-10px);
+      padding-bottom: 0;
+      @apply (--cells-molecule-input-floated-label); }
+
+.text-error {
+  color: var(--cells-molecule-input-text-error-color, #db4437);
+  position: absolute;
+  font-size: small;
+  bottom: 0;
+  left: 0;
+  text-align: right;
+  white-space: nowrap;
+  width: 100%;
+  transition: all 200ms;
+  opacity: 0.5;
+  @apply (--cells-molecule-input-text-error); }
+
+/** [type=number] **/
+:host([type=number]) .text-field__input::-webkit-inner-spin-button,
+:host([type=number]) .text-field__input::-webkit-outer-spin-button {
+  @apply (--cells-molecule-input-number-spin-buttons); }
+
+/** [type=password] **/
+:host([type=password]) .has-content {
+  @apply (--cells-molecule-input-password-has-content); }
+
+</style></template></dom-module>

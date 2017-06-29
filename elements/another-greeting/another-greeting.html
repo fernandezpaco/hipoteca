@@ -1,0 +1,30 @@
+<dom-module id="another-greeting">
+  <style>
+    :host {
+      display: block;
+      margin: 1em;
+      padding: 1em;
+      border: 1px solid #000;
+      border-radius: 5px;
+    }
+  </style>
+  <template>
+    <p>Esto es un ejemplo de otro componente.</p>
+    <p>El texto que escribas en la caja de arriba aparece escrito a continuación: <strong>[[anotherGreeting]]</strong></p>
+
+  </template>
+
+  <script>
+(function() {
+  Polymer({
+    is: 'another-greeting',
+    properties: {
+      anotherGreeting: {
+        type: String
+      }
+    }
+  });
+})();
+</script>
+
+</dom-module>

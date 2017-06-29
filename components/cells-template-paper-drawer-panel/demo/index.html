@@ -1,0 +1,822 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no" name="viewport">
+  <title>Cells template 1 column right sidebar demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html">
+  <link rel="import" href="../../paper-tabs/paper-tabs.html">
+  <link rel="import" href="../../paper-toast/paper-toast.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../cells-template-paper-drawer-panel.html">
+  <style is="custom-style">
+    :root {
+      --app__main-padding-bottom: 0;
+      --paper-tabs-selection-bar-color: rgba(180, 192, 227, 1);
+    }
+    
+    paper-tab::content paper-ripple {
+      color: #4285f4;
+    }
+    
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    
+    body {
+      background-color: #FAFAFF;
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.5;
+      color: rgba(89, 128, 236, .88);
+      padding-top: 1.5rem;
+      width: 90%;
+      max-width: 1280px;
+      margin: auto;
+      box-sizing: border-box;
+    }
+    
+    .inner.hidden {
+      display: none;
+    }
+    
+    .inner {
+      position: relative;
+      padding-top: 4em;
+      margin: auto;
+    }
+    
+    h1,
+    h2 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      margin: 0;
+      margin-bottom: 32px;
+    }
+    
+    h2 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    
+    .adjust-demo-snippet {
+      margin-bottom: -12px;
+    }
+    
+    h1 svg {
+      width: 26px;
+      height: 26px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: .5rem;
+    }
+    
+    .wrapper {
+      margin-top: 236px;
+      position: relative;
+      margin-bottom: 136px;
+    }
+    
+    demo-snippet {
+      box-shadow: none;
+    }
+    
+    demo-snippet::content .code-container {
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 100%;
+      box-shadow: 0 0px 0px 1px rgba(218, 224, 241, 0.80);
+      transform: translateY(-100%)
+    }
+    
+    demo-snippet::content .demo {
+      padding: 0;
+      background-color: transparent;
+    }
+    
+    demo-snippet::content .demo {
+      height: 50vh;
+      position: relative;
+      margin-bottom: 80px;
+    }
+    
+    cells-template-paper-drawer-panel {
+      outline: 1px dashed rgba(180, 192, 227, 1);
+      outline-offset: 1px;
+      overflow: visible;
+      opacity: 1;
+    }
+    
+    cells-template-paper-drawer-panel::content .app-container {}
+    
+    cells-template-paper-drawer-panel::content .app__section {
+      padding: 1px;
+      border: 1px solid rgba(180, 192, 227, 1);
+      box-sizing: border-box;
+    }
+    
+    cells-template-paper-drawer-panel::content .app__main {
+      /*height: calc(100% - 41px);*/
+    }
+    
+    cells-template-paper-drawer-panel::content .app__section:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(89, 128, 236, .5);
+      transition: opacity 300ms ease-in-out;
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    cells-template-paper-drawer-panel[drawer-state=open]::content .app__section:after {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    cells-template-paper-drawer-panel::content .app__header {
+      background-color: rgba(255, 255, 255, 1);
+      border-bottom: 1px solid rgba(180, 192, 227, 1);
+      height: 60px;
+      position: relative;
+    }
+    
+    cells-template-paper-drawer-panel::content .app__main {
+      position: relative;
+      background-color: rgba(255, 255, 255, 1);
+    }
+    
+    cells-template-paper-drawer-panel::content .app__main:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 2px;
+      bottom: 2px;
+      right: 2px;
+      width: 7px;
+      border-radius: 3px;
+      background-color: rgba(180, 192, 227, .5);
+    }
+    
+    cells-template-paper-drawer-panel::content .app__complementary {
+      background-color: rgba(255, 255, 255, 1);
+      border: 1px solid rgba(180, 192, 227, 1);
+      box-sizing: border-box;
+      transform: scale(.994);
+    }
+    
+    cells-template-paper-drawer-panel::content .app__footer {
+      position: relative;
+      border-top: 1px solid rgba(180, 192, 227, 1);
+      background-color: rgba(255, 255, 255, 1);
+      height: 40px
+    }
+    
+    cells-template-paper-drawer-panel::content .app__transactional {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -8px;
+      transform: translateY(100%);
+      height: 76px;
+      background-color: rgba(255, 255, 255, 1);
+      border: 1px dashed rgba(180, 192, 227, 1);
+      outline: 1px solid rgba(180, 192, 227, 1);
+      outline-offset: -3px;
+    }
+    
+    cells-template-paper-drawer-panel::content .app__header > div,
+    cells-template-paper-drawer-panel::content .app__main > div,
+    cells-template-paper-drawer-panel::content .app__complementary > div,
+    cells-template-paper-drawer-panel::content .app__footer > div,
+    cells-template-paper-drawer-panel::content .app__transactional > div {
+      font-size: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 1.1;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    /* page 2*/
+    
+    .horizontal,
+    .vertical,
+    .static {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    .vertical,
+    .static {
+      flex-direction: column;
+    }
+    
+    .horizontal--forwards .in--horizontal {
+      transform: translateX(calc(-50% + 30px));
+    }
+    
+    .horizontal--backwards .in--horizontal {
+      order: -1;
+      transform: translateX(calc(50% - 30px));
+    }
+    
+    .btn {
+      display: inline-block;
+      background: #FFFFFF;
+      border-radius: 8px;
+      text-transform: uppercase;
+      text-align: center;
+      font-family: sans-serif;
+      font-size: .682rem;
+      padding: .2em 1.6em;
+      line-height: 1.2;
+      color: #224FBD;
+      white-space: nowrap;
+    }
+    
+    .out,
+    .in {
+      width: 120px;
+      position: relative;
+    }
+    
+    .out .btn,
+    .in .btn {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .out {
+      border: 1px solid #224FBD;
+      box-shadow: inset 0 0 0 4px #fff;
+      background-color: #224FBD;
+      border-radius: 8px;
+      height: 160px;
+      z-index: 1;
+      opacity: .9;
+    }
+    
+    .in {
+      border: 1px dotted #FF007F;
+      background-color: rgba(255, 0, 127, 0.35);
+      height: 130px;
+    }
+    
+    .vertical--down .in--vertical {
+      transform: scale(1.08);
+    }
+    
+    .vertical--down .out--vertical {
+      transform: translateY(-65%);
+      margin-bottom: -100px;
+    }
+    
+    .vertical--down .in--vertical .btn {
+      bottom: auto;
+      top: 6px;
+    }
+    
+    .vertical--up .in--vertical {
+      transform: scale(1.08) translateY(-65%);
+      z-index: 2;
+      margin-bottom: -90px;
+    }
+    
+    .vertical--up .out--vertical .btn {
+      bottom: auto;
+      top: 6px;
+    }
+    
+    .static .in--static {
+      transform: scale(1.01);
+      height: 160px;
+    }
+    
+    .static .out--static {
+      transform: translateY(-100%);
+      margin-bottom: -160px;
+      opacity: .5;
+    }
+    
+    .static .in--static .btn {
+      bottom: auto;
+      top: 8px;
+    }
+    
+    .static--backwards .out--static .btn {
+      bottom: auto;
+      top: 8px;
+    }
+    
+    .static--backwards .in--static .btn {
+      top: auto;
+      bottom: 8px;
+    }
+    
+    .wrapper-animation .section {
+      box-sizing: border-box;
+      border-bottom: 1px solid rgba(45, 46, 48, .2);
+      overflow: hidden;
+      padding: 2em 0;
+    }
+    
+    .type-anim {
+      float: left;
+      min-width: 50%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      align-items: center;
+    }
+    
+    .wrapper-animation h1,
+    .wrapper-animation h2,
+    .wrapper-animation p {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .wrapper-animation h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    
+    .wrapper-animation h1 span {
+      text-transform: uppercase;
+    }
+    
+    .wrapper-animation p {
+      font-size: .9rem;
+      line-height: 1.2;
+    }
+    
+    .wrapper-animation h1 + p {
+      margin-bottom: .79rem;
+      font-size: .96rem;
+    }
+    
+    .wrapper-animation h1 ~ p span {
+      display: inline-block;
+      margin-right: 4px;
+    }
+    
+    .wrapper-animation h1 ~ p:nth-child(4) span {
+      margin-right: 12px;
+    }
+    
+    .wrapper-animation h2 {
+      margin: 2.5rem 0 .75rem 0;
+      text-transform: uppercase;
+      font-size: .8rem;
+    }
+    
+    .wrapper-animation figure {
+      display: inline-block;
+      margin: 0;
+      padding: .5em;
+    }
+    
+    .wrapper-animation svg {
+      fill: rgba(89, 128, 236, .88);
+      width: 24px;
+      height: 24px;
+    }
+    
+    .icon--up svg {
+      transform: rotate(180deg);
+    }
+    
+    .icon--right svg {
+      transform: rotate(90deg);
+    }
+    
+    .icon--left svg {
+      transform: rotate(-90deg);
+    }
+    
+    .wrapper .overflow {
+      overflow: hidden;
+      padding: 1px;
+      height: 54px;
+    }
+    
+    .button {
+      position: relative;
+      font-size: 11px;
+      border: 1px solid rgba(180, 192, 227, 1);
+      background-color: rgba(180, 192, 227, .35);
+      padding: .5em;
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.5;
+      color: rgba(89, 128, 236, .88);
+      border-radius: 4px;
+      text-transform: uppercase;
+      transform: translateY(18px);
+      outline: 0;
+      min-width: 140px;
+      cursor: pointer;
+    }
+    
+    .button:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0);
+      z-index: 1;
+    }
+    
+    .button span {
+      transform: translateX(0);
+      display: inline-block;
+      transition: transform 200ms ease;
+    }
+    
+    .button figure {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(calc(-50% - 1px));
+      transition: opacity 200ms 200ms ease;
+      opacity: 0;
+    }
+    
+    .button svg {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      vertical-align: middle;
+    }
+    
+    .button.active span {
+      transform: translateX(-15%);
+    }
+    
+    .button.active figure {
+      opacity: 1;
+    }
+    
+    .button-right {
+      float: right;
+    }
+
+    /* page 3 */
+    cells-template-paper-drawer-panel.scrollable::content .app__main > div {
+      width: 100%;
+      height: 100%;
+    }
+
+    cells-template-paper-drawer-panel.scrollable::content #mainContainer {
+      padding-top: 0 !important;
+    }
+
+    cells-template-paper-drawer-panel.scrollable::content #headerContainer,
+    cells-template-paper-drawer-panel.scrollable::content .app__transactional,
+    cells-template-paper-drawer-panel.scrollable::content .app__footer {
+      display: none !important;
+    }
+
+    .scroll-box-item {
+      position: relative;
+      top: 0;
+      left: 10%;
+      width: 80%;
+      margin: 10px;
+      height: 100%;
+      display: block;
+      border: 1px solid #000;
+      color: #ffffff;
+      outline: none;
+    }
+
+    .scroll-box-item.red {
+      background-color: #ff0000;
+    }
+    .scroll-box-item.green {
+      background-color: #00ff00;
+    }
+    .scroll-box-item.blue {
+      background-color: #0000ff;
+    }
+
+    paper-button.active {
+      background-color: #0d47a1;
+      color: #ffffff;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>
+    <span>
+      <svg  class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+        <path fill="#b4c0e3" d="M32.125 1.945c0 0.554-0.45 1.004-1.004 1.004h-30.117c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h30.117c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M32.125 5.961c0 0.554-0.45 1.004-1.004 1.004h-30.117c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h30.117c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 9.977c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 13.992c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 18.008c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 22.023c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 26.039c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M32.125 9.977c0 0.554-0.45 1.004-1.004 1.004h-10.039c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h10.039c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M18.070 30.055c0 0.554-0.45 1.004-1.004 1.004h-16.063c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h16.063c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M32.125 13.992c0 0.554-0.45 1.004-1.004 1.004h-10.039c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h10.039c0.554 0 1.004 0.45 1.004 1.004z"></path>
+        <path fill="#b4c0e3" d="M32.125 18.008c0 0.554-0.45 1.004-1.004 1.004h-10.039c-0.554 0-1.004-0.45-1.004-1.004s0.45-1.004 1.004-1.004h10.039c0.554 0 1.004 0.45 1.004 1.004z"></path>
+      </svg>
+    </span> Template paper drawer panel
+  </h1>
+
+  <paper-tabs selected="0">
+    <paper-tab data-tab="demo-1">LAYOUT</paper-tab>
+    <paper-tab data-tab="demo-2">ANIMATIONS</paper-tab>
+    <paper-tab data-tab="demo-3">SCROLLING</paper-tab>
+  </paper-tabs>
+
+
+  <div class="inner" data-tab="demo-1">
+
+    <h2 class="adjust-demo-snippet">Default drawer</h2>
+    <section class="wrapper">
+      <div class="overflow">
+        <button class="button button-left js-button-left">
+          <span>Menu Left</span>
+          <figure>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+              <path fill="#b4c0e3" d="M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z"></path>
+            </svg>
+          </figure>
+        </button>
+        <button class="button button-right js-button-right">
+          <span>Menu Right</span>
+          <figure>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+              <path fill="#b4c0e3" d="M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z"></path>
+            </svg>
+          </figure>
+        </button>
+      </div>
+      <demo-snippet>
+        <template>
+          <cells-template-paper-drawer-panel>
+            <div data-select="app__header">header</div>
+            <div data-select="app__main">main</div>
+            <div data-select="app__footer">footer</div>
+            <div data-select="app__complementary">complementary</div>
+            <div data-select="app__overlay">overlay</div>
+            <div data-select="app__transactional">transactional</div>
+          </cells-template-paper-drawer-panel>
+        </template>
+      </demo-snippet>
+
+    </section>
+
+  </div>
+  <div class="inner hidden" data-tab="demo-2">
+    <div class="wrapper-animation">
+      <section class="section">
+        <h1>Animation <span>Horizontal</span></h1>
+        <p>Both pages, the output and input have a horizontal animation, whether navigating forward and backward</p>
+        <p><span>Page out</span> {animationType:horizontal}</p>
+        <p><span>Page in</span> {animationType:horizontal}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="horizontal horizontal--forwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--right">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+            </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="horizontal horizontal--backwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+            </svg>
+          </figure>
+        </article>
+      </section>
+
+      <section class="section">
+        <h1>Animation <span>vertical Down Forwards</span></h1>
+        <p>The output page has a vertical animation and input remains static when we go forward; to back both have a horizontal
+          animation
+        </p>
+        <p><span>Page out</span> {animationType:verticalDownForwards}</p>
+        <p><span>Page in</span> {animationType:horizontal}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+
+          <div class="vertical vertical--down">
+            <div class="in in--vertical"><span class="btn">in static</span></div>
+            <div class="out out--vertical"><span class="btn">out</span></div>
+          </div>
+          <figure class="icon icon--down">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+            </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="horizontal horizontal--backwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+            </svg>
+          </figure>
+        </article>
+      </section>
+
+      <section class="section">
+        <h1>Animation <span>vertical Down Backwards</span></h1>
+        <p>Both pages have a horizontal animation when we go forward; to back the output page has a vertical animation and input
+          remains static</p>
+        <p><span>Page out</span> {animationType:horizontal}</p>
+        <p><span>Page in</span> {animationType:verticalDownBackwards}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="horizontal horizontal--forwards">
+
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--right">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+            </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+
+          <div class="vertical vertical--down">
+            <div class="in in--vertical"><span class="btn">in static</span></div>
+            <div class="out out--vertical"><span class="btn">out</span></div>
+          </div>
+          <figure class="icon icon--down">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+            </svg>
+          </figure>
+        </article>
+      </section>
+
+      <section class="section">
+        <h1>Animation <span>vertical up</span></h1>
+        <p>Both pages, the output and input have a vertical animation, whether navigating forward and backward</p>
+        <p><span>Page out</span> {animationType:verticalUp}</p>
+        <p><span>Page in</span> {animationType:verticalUp}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="vertical vertical--up">
+            <div class="out out--vertical"><span class="btn">out static</span></div>
+            <div class="in in--vertical"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--up">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+            </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="vertical vertical--down">
+            <div class="in in--vertical"><span class="btn">in static</span></div>
+            <div class="out out--vertical"><span class="btn">out</span></div>
+          </div>
+          <figure class="icon icon--down">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+            </svg>
+          </figure>
+        </article>
+      </section>
+      <section class="section">
+        <h1>Animation <span>Horizontal ever</span></h1>
+        <p>Both pages, the output and the input have a horizontal animation, whether navigating forward and back</p>
+        <p><span>Page out</span>or in {animationType:horizontalEver}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="horizontal horizontal--forwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--right">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+            </svg>
+          </figure>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="horizontal horizontal--backwards">
+            <div class="out out--horizontal"><span class="btn">out</span></div>
+            <div class="in in--horizontal"><span class="btn">in</span></div>
+          </div>
+          <figure class="icon icon--left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+              <path d="M26.921 21.537c0.406-0.406 0.406-1.117 0-1.625-0.406-0.406-1.219-0.406-1.625 0l-8.127 8.127v-26.921c0-0.61-0.508-1.117-1.219-1.117-0.61 0-1.117 0.508-1.117 1.117v27.022l-8.127-8.127c-0.406-0.406-1.117-0.406-1.625 0-0.406 0.406-0.406 1.117 0 1.625l10.159 10.159c0.406 0.406 1.117 0.406 1.625 0l10.057-10.26z"></path>
+            </svg>
+          </figure>
+        </article>
+      </section>
+      <section class="section">
+        <h1>Animation <span>static ever</span></h1>
+        <p>Both pages, the output and the input have a static animation (no animation visible), whether navigating forward and
+          back
+        </p>
+        <p><span>Page out</span>or in {animationType:staticEver}</p>
+        <article class="type-anim">
+          <h2>forwards action</h2>
+          <div class="static">
+            <div class="in in--static"><span class="btn">in static</span></div>
+            <div class="out out--static"><span class="btn">out static</span></div>
+          </div>
+        </article>
+        <article class="type-anim">
+          <h2>backwards action</h2>
+          <div class="static static--backwards">
+            <div class="in in--static"><span class="btn">in static</span></div>
+            <div class="out out--static"><span class="btn">out static</span></div>
+          </div>
+        </article>
+      </section>
+
+    </div>
+
+
+  </div>
+  <div class="inner hidden" data-tab="demo-3">
+
+    <h2 class="adjust-demo-snippet">Scrolling</h2>
+    <section class="wrapper">
+      <p>&lt;cells-template-paper-drawer-panel/&gt; method <b>scrollItemIntoView()</b> allow to scroll an inner child of <i>main</i> zone.</p>
+      <p><i>scrollItemIntoView()</i> payload must be a valid inner child node:</p>
+      <pre>
+        function fakeScroll(to) {
+          var panel = document.getElementById('scroll-panel');
+          if (panel) {
+            panel.scrollItemIntoView({data: document.getElementById(to)});
+          }
+        }
+      </pre>
+      <p>Event <b>cells-scroll-complete</b> is fired after completing the scroll, returning the scrolled item.</p>
+      <p>Click on the buttons of the main zone bellow to see the scrolling:</p>
+      <demo-snippet>
+        <template>
+          <cells-template-paper-drawer-panel id="scroll-panel" class="scrollable">
+            <div data-select="app__header"></div>
+            <div data-select="app__main">
+              <button class="scroll-box-item red" id="scroll-box-1" onclick="fakeScroll('scroll-box-2')">Item #1</button>
+              <button class="scroll-box-item green" id="scroll-box-2" onclick="fakeScroll('scroll-box-3')">Item #2</button>
+              <button class="scroll-box-item blue" id="scroll-box-3" onclick="fakeScroll('scroll-box-1')">Item #3</button>
+            </div>
+            <div data-select="app__footer"></div>
+            <div data-select="app__complementary"></div>
+            <div data-select="app__overlay"></div>
+            <div data-select="app__transactional"></div>
+          </cells-template-paper-drawer-panel>
+        </template>
+      </demo-snippet>
+      <paper-toast id="toast" text="'cells-scroll-complete' fired!"></paper-toast>
+    </section>
+  </div>
+
+  <script src="demo.js"></script>
+</body>
+
+</html>

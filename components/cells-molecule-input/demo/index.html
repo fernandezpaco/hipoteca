@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <title>Demo cells-molecule-input</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script>
+    /* this script must run before Polymer is imported */
+    window.Polymer = {
+      dom: 'shadow',
+      lazyRegister: true,
+      useNativeCSSProperties: true
+    };
+  </script>
+
+  <link rel="import" href='../../cells-glomo-theme/cells-glomo-theme.html'>
+  <link rel="import" href="../../coronita-icons/coronita-icons.html">
+  <link rel="import" href="../../coronita-icons/glomo-icons.html">
+  <link rel="import" href="../../cells-demo-mobile/cells-demo-mobile.html">
+  <link rel="import" href="../../paper-tabs/paper-tabs.html">
+  <link rel="import" href="../../paper-styles/typography.html">
+  <link rel="import" href="../../iron-pages/iron-pages.html">
+  <link rel="import" href="../cells-molecule-input.html">
+
+  <link rel="import" href="css/demo-styles.html">
+</head>
+<body unresolved ontouchstart>
+<template is="dom-bind" id="tbind">
+
+  <paper-tabs id="tabs" scrollable selected="{{selected}}">
+    <paper-tab>Your name</paper-tab>
+    <paper-tab>Email Validation</paper-tab>
+    <paper-tab>Password</paper-tab>
+    <paper-tab>I'm disabled</paper-tab>
+    <paper-tab>Alan Turing</paper-tab>
+    <paper-tab>I've got an icon</paper-tab>
+    <paper-tab>Only accept numbers</paper-tab>
+    <paper-tab>Customize text field icon</paper-tab>
+    <paper-tab>Visibe Icon</paper-tab>
+    <paper-tab>Max Length</paper-tab>
+    <paper-tab>Select text on focus</paper-tab>
+    <!-- <paper-tab data-mock-key="emailValidation">Only accept email</paper-tab> -->
+  </paper-tabs>
+
+  <cells-demo-mobile>
+    <iron-pages selected="{{selected}}">
+      <cells-molecule-input name="default" label="Your Name" type="text"></cells-molecule-input>
+
+      <div label="emailValidation" class="emailValidation">
+        <span>Pre-validated with required </span>
+        <cells-molecule-input
+          label="Auto-validating"
+          type="email"
+          required
+          auto-validate></cells-molecule-input>
+
+        <cells-molecule-input
+          label="custom regex, needs to ends in .com"
+          type="email"
+          regex='^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+.com$'
+          value="hello@info.es"
+          auto-validate></cells-molecule-input>
+
+        <cells-molecule-input
+           label="Email contact with error message"
+           error-message="Please enter a valid email"
+           type="email"
+           required
+           auto-validate></cells-molecule-input>
+
+        <span>Pre-validated without required </span>
+        <cells-molecule-input
+          label="Auto-validating"
+          type="email"
+          auto-validate></cells-molecule-input>
+
+        <span>Without required nor auto-validate</span>
+        <cells-molecule-input
+          label="Auto-validating"
+          type="email"></cells-molecule-input>
+      </div>
+
+      <cells-molecule-input name="password"
+        label="Password"
+        type="password"
+        value="mySecretNumber25"
+        with-icon></cells-molecule-input>
+
+      <cells-molecule-input name="disabled"
+        label="Im disabled"
+        type="text"
+        disabled></cells-molecule-input>
+
+      <cells-molecule-input name="alanTuring"
+        label="Your name"
+        type="text"
+        value="Alan Turing"
+        with-icon></cells-molecule-input>
+
+      <cells-molecule-input name="withIcon"
+        label="Ive got an icon"
+        type="text"
+        with-icon></cells-molecule-input>
+
+      <cells-molecule-input name="numberValidation"
+        label="Only accept numbers"
+        type="text"
+        allowed-pattern="[0-9]"
+        prevent-invalid-input
+        required></cells-molecule-input>
+
+      <cells-molecule-input name="customIcon"
+        label="Custom text field icon"
+        type="password"
+        text-field-icon="coronita:alert"
+        text-field-icon-toggle="coronita:alarm"
+        text-field-icon-size="icon-size-26"
+        with-icon></cells-molecule-input>
+
+      <cells-molecule-input name="iconVisible"
+        label="Icon visible"
+        type="text"
+        text-field-icon="coronita:search"
+        text-field-icon-size="icon-size-22"
+        with-icon
+        icon-always-visible></cells-molecule-input>
+
+      <cells-molecule-input name="length"
+        label="Max length of 10"
+        type="password"
+        max-length="10"></cells-molecule-input>
+
+      <div>
+        <span>On focus, if text has been entered, it will be selected</span>
+        <cells-molecule-input label="Type here" select-all-on-focus></cells-molecule-input>
+        <cells-molecule-input label="Type here aswell" select-all-on-focus></cells-molecule-input>
+      </div>
+    </iron-pages>
+  </cells-demo-mobile>
+
+</template>
+
+<script src="js/demo.js"></script>
+</body>
+</html>

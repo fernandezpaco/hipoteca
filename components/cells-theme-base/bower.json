@@ -1,0 +1,19 @@
+{
+  "name": "cells-theme-base",
+  "version": "4.0.13",
+  "description": "Includes variables, mixins and common style properties of components like font sizes, font families, colors or gradients.",
+  "keywords": [
+    "theme",
+    "base",
+    "styles"
+  ],
+  "main": [
+    "cells-theme-base.html"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.6.0"
+  },
+  "devDependencies": {
+    "marked-element": "PolymerElements/marked-element#~1.1.3"
+  }
+}

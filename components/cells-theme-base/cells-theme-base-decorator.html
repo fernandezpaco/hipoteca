@@ -1,0 +1,48 @@
+<style is="custom-style">
+  :root {
+    /* decorators content general*/
+
+    --cells-decorator-content-type-01:{
+      border: 1px solid transparent;
+      border-color: #B6CEEA;
+      background-color: transparent;
+      background-image: -webkit-linear-gradient(top, #fff, #eaf1f7);
+      background-image: linear-gradient(to bottom, #fff, #eaf1f7);
+    }
+
+    --cells-decorator-inset: {
+      background-color: var(--cells-KM8_colour);
+      box-shadow:  0 0 0 1px var(--cells-BM7_colour), inset 0px 2px 3px -3px rgba(0, 0, 0, 0.5);
+    };
+    --cells-decorator-content-neutral: {
+      border-top: 1px solid #FFF;
+      border-bottom: 1px solid #DBDCDF;
+      background-color: #F0F2EF;
+    };
+    --cells-decorator-content-neutral__white: {
+      @apply(--cells-decorator-content-neutral);
+      background-color: #FFF;
+    };
+    --cells-decorator-content-neutral-gradient: {
+      background-image: -webkit-linear-gradient(#fdfefe, #f5f7f8);
+      background-image: linear-gradient(#fdfefe, #f5f7f8);
+      border: 1px solid #d5e2ee;
+      box-shadow: inset -4px -4px white, inset 4px 4px white;
+    };
+    --cells-decorator-content-neutral-gradient-sides: {
+      background-image: -webkit-linear-gradient(#fdfefe, #f5f7f8);
+      background-image: linear-gradient(#fdfefe, #f5f7f8);
+      border: 1px solid #d5e2ee;
+      box-shadow: inset -4px -0px white, inset 4px 0 white;
+    };
+    /* background gradients for overlays */
+    --cells-bg-glow: {
+      background-color: rgba(255, 255, 255, .7);
+      background-image: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, .7) 0, #797f85 100%);
+      background-image: radial-gradient(ellipse at center, rgba(255, 255, 255, .7) 0, #797f85 100%);
+    };
+    --cells-bg-dark: {
+      background-color: rgba(0, 0, 0, .6);
+    };
+  }
+</style>

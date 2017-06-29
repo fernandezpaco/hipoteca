@@ -1,0 +1,88 @@
+<dom-module id="payment-calculator">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <h3>Nos ha dicho que tiene [[age]] años, percibe [[incomes]] € mensuales
+       y que el inmueble que quiere comprar cuesta [[housePrice]] €.</h3>
+    <h3>Según estos datos, puede solicitar una hipoteca de:</h3>
+    <h2>Importe máximo: [[maxAmount]] €</h2>
+    <h2>Plazo máximo: [[maxTerm]] años</h2>
+    <cells-molecule-input label="¿Cuánto dinero necesita?" 
+      value="{{amount}}"
+      type="number"
+      required="true"
+      prevent-invalid-input="true"
+      allowed-pattern="['0-9']">
+    </cells-molecule-input>
+     <cells-molecule-input label="¿En cuántos años lo quiere devolver?" 
+      value="{{term}}"
+      type="number"
+      required="true"
+      prevent-invalid-input="true"
+      allowed-pattern="['0-9']">
+    </cells-molecule-input>
+    <h2>Cuota mensual: [[monthlyPayment]]</h2>
+    <h3>Para una hipoteca de [[amount]] € a [[term]] años con un interés fijo del 2.5%</h3>    
+  </template>
+
+<script>
+(function() {
+  Polymer({
+    is: 'payment-calculator',
+    properties: {
+      age: {
+        type: Number,
+        notify: true
+      },
+      housePrice: {
+        type: Number,
+        notify: true
+      },
+      incomes: {
+        type: Number,
+        notify: true
+      },
+      amount: {
+        type: Number,
+        notify: true
+      },
+      term: {
+        type: Number,
+        notify: true
+      },
+      monthlyPayment: {
+        type: Number,
+        computed: '_computeMonthlyPayment(term, amount)'
+      },
+      maxTerm: {
+        type: Number,
+        computed: '_computeMaxTerm(age)'
+      },
+      maxAmount: {
+        type: Number,
+        computed: '_computeMaxAmount(housePrice)'
+      }
+    },
+    ready() {
+      this.term = this.maxTerm;
+      this.amount = this.maxAmount;
+    },
+    _computeMaxTerm: function(age) {
+      return Math.min(30, 65-age);
+    },
+
+    _computeMaxAmount: function(housePrice) {
+      return housePrice*0.8;
+    },
+
+    _computeMonthlyPayment: function(term, amount) {
+      return amount*1.0025/(term*12);
+    }
+  });
+})();
+</script>
+
+</dom-module>

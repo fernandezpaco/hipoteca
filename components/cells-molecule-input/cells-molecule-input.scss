@@ -1,0 +1,172 @@
+@import "bower_components/cells-sass/main";
+:host {
+  display: block;
+  position: relative;
+  background-color: var(--cells-molecule-input-background-color, #fff);
+  border: 1px solid var(--cells-molecule-input-border-color, #ccc);
+
+  @apply(--cells-molecule-input);
+}
+
+:host([disabled]) {
+  border-color: var(--cells-molecule-input-disabled-color, #C7C7C7);
+
+  @apply(--cells-molecule-input-disabled);
+}
+
+:host([focused]) {
+  .text-field__icon {
+    opacity: 1;
+  }
+
+  @apply(--cells-molecule-input-focused);
+}
+
+:host([with-icon]) {
+  padding-right: rem(60px);
+
+  .text-field__input {
+    padding-right: 0;
+  }
+
+  &:not(.has-content) {
+    padding-right: 0;
+
+    @apply(--cells-molecule-input-not-has-content);
+  }
+
+  @apply(--cells-molecule-input-with-icon);
+}
+
+:host([invalid]) {
+  border-bottom: 1px solid var(--cells-molecule-input-invalid-border-bottom, #db4437);
+
+  input {
+    color: var(--cells-molecule-input-invalid-input-color, #db4437);
+  }
+  .text-field__label {
+    color: var(--cells-molecule-input-invalid-placeholder-color, #686663);
+  }
+
+  @apply(--cells-molecule-input-invalid);
+}
+
+.text-field {
+  position: relative;
+  display: block;
+  min-height: rem(60px);
+  pointer-events: none;
+
+  &__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: rem(22px) rem(19px) rem(20px);
+    color: var(--cells-molecule-input-placeholder-color, #A0A0A3);
+    white-space: nowrap;
+    line-height: 1;
+    width: 100%;
+    transition: all 200ms;
+    opacity: 0.5;
+
+    @apply(--cells-molecule-input-label);
+  }
+
+  &__icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    text-align: center;
+    padding: 0 rem(17px);
+    width: rem(50px);
+    opacity: 0;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &.icon-always-visible{
+      opacity: 1;
+    }
+
+    @apply(--cells-molecule-input-icon);
+  }
+
+  &__label,
+  &__icon {
+    z-index: 1;
+    transition: all 200ms;
+  }
+
+  &__input {
+    color: var(--cells-molecule-input-input-color, #686663);
+    width: 100%;
+    height: 100%;
+    padding: 0 rem(19px);
+    line-height: 1.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    background: transparent;
+    pointer-events: auto;
+
+    &:-webkit-autofill {
+      box-shadow: 0 0 0px 1000px var(--cells-molecule-input-background, #fff) inset;
+    }
+
+    &.has-content {
+      padding: rem(20px) rem(19px) 0 rem(19px);
+
+      @apply(--cells-molecule-input-has-content);
+    }
+
+    &.has-content~.text-field__label {
+      color: var(--cells-molecule-input-disabled-color, #C7C7C7);
+      opacity: .5;
+      font-size: rem(14px);
+      transform: translateY(-10px);
+      padding-bottom: 0;
+
+      @apply(--cells-molecule-input-floated-label);
+    }
+
+    @apply(--cells-molecule-input-input);
+  }
+
+  @apply(--cells-molecule-input-text-field);
+}
+
+.text-error {
+  color: var(--cells-molecule-input-text-error-color, #db4437);
+  position: absolute;
+  font-size: small;
+  bottom: 0;
+  left: 0;
+  text-align: right;
+  white-space: nowrap;
+  width: 100%;
+  transition: all 200ms;
+  opacity: 0.5;
+
+  @apply(--cells-molecule-input-text-error);
+}
+
+/** [type=number] **/
+:host([type=number]) .text-field__input::-webkit-inner-spin-button,
+:host([type=number]) .text-field__input::-webkit-outer-spin-button {
+  @apply(--cells-molecule-input-number-spin-buttons);
+}
+
+/** [type=password] **/
+:host([type=password]) .has-content {
+  @apply(--cells-molecule-input-password-has-content);
+}

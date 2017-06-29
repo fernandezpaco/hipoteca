@@ -1,0 +1,1 @@
+!function(e){"use strict";e.AppEnvironments={selected:{app:"default",environment:"env"},availableApps:{default:{env:{composerEndpoint:"./composerMocks/",coreCache:!0}}}}}(window);

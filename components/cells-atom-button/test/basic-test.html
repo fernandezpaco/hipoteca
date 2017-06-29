@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <link rel="import" href="../cells-atom-button.html">
+  </head>
+  <body>
+
+    <test-fixture id="default">
+      <template>
+        <button is="cells-atom-button"></button>
+      </template>
+    </test-fixture>
+
+    <script>
+    suite('<button is="cells-atom-button"></button>', function() {
+      var el;
+
+      setup(function() {
+        el = fixture('default');
+      });
+
+      test('is ok', function() {
+        assert.isOk(el);
+      });
+    });
+    </script>
+  </body>
+</html>

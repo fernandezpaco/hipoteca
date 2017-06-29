@@ -1,0 +1,50 @@
+{
+  "pages": {
+    "home": {
+      "url": "/"
+    },
+    "calculator": {
+      "url": "/calculator"
+    }
+  },
+  "template": {
+    "familyPath": "../../components/cells-template-paper-header-panel",
+    "tag": "cells-template-paper-header-panel",
+    "properties": {
+      "mode": "seamed",
+      "zones": [
+        "app__header",
+        "app__main",
+        "app__footer"
+      ]
+    }
+  },
+  "components": [
+    {
+      "zone": "app__main",
+      "type": "UI",
+      "tag": "client-data-form",
+      "familyPath": "../elements/client-data-form",
+      "properties": {
+
+        "cellsConnections": {
+          "in": {
+          },
+          "out": {
+            "continue-event": {
+              "bind": "nav-to-calculator-event",
+              "link": {
+                "page": "calculator"
+              }
+            }
+          },
+          "params": {
+              "age": "paramAge",
+              "housePrice": "paramHousePrice",
+              "incomes": "paramIncomes"
+          }          
+        }
+      }
+    }
+  ]
+}

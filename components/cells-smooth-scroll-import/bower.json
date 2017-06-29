@@ -1,0 +1,20 @@
+{
+  "name": "cells-smooth-scroll-import",
+  "version": "1.0.0",
+  "description": "HTML import wrapper for smooth scroll polyfill",
+  "keywords": [
+    "import",
+    "polyfill",
+    "smooth",
+    "scroll"
+  ],
+  "ignore": [
+    "**/*."
+  ],
+  "dependencies": {
+    "smoothscroll": "v0.3.4"
+  },
+  "main": [
+    "cells-smooth-scroll-import.html"
+  ]
+}

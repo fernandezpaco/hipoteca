@@ -1,0 +1,136 @@
+<link rel="import" href="../../components/cells-router-behavior/cells-router-behavior.html">
+
+<dom-module id="oldway-router">
+  <style>
+    :host {
+      display: block;
+      margin: 1em;
+      padding: 1em;
+      border:1px solid #000;
+      border-radius: 5px;
+    }
+
+    button { display:block; margin: 1em 0; }
+
+    pre {
+      font-size:.9em;
+    }
+
+
+    table {
+      border-collapse: collapse;
+      text-align: left;
+      width: 100%;
+      border-color: black;
+      border: 1px solid;
+    }
+
+      table td, table th {
+        padding: 3px 10px;
+      }
+      table thead th {
+        background-color: #006699;
+        color:#FFFFFF;
+        font-size: 12px;
+        font-weight: bold;
+        border-left: 1px solid #0070A8; }
+      table thead th:first-child {
+        border: none;
+      }
+      table tbody td {
+        color: #00496B;
+        border-left: 1px solid black;
+        font-size: 14px;
+        font-weight: normal;
+      }
+      table tbody.alt td {
+        background:#E1EEF4;
+        color:#00496B; }
+      table tbody td:first-child {
+        border-left: none;
+      }
+      table tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+  </style>
+  <template>
+
+    <button on-tap="goToRouterExample">Navega a otra página pasando parámetros manera antigua</button>
+
+     <table>
+                <thead>
+                    <tr>
+                        <th>New way</th>
+                        <th>Old way</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+
+                               <pre>
+"cellsConnections": {
+  "in": {},
+  "out": {
+    "router-channel": {
+      "bind": "router-event",
+      "link": {
+        "page": "routerExample",
+        "params": {
+          "stateParam": "stateParam",
+          "queryParam": "queryParamGlobal",
+          "queryParamTwo": "queryParamTwo"
+        }
+      }
+    }
+  }
+}
+                               </pre>
+
+                        </td>
+                        <td class="alt">
+                              <pre>
+"cellsConnections": {
+  "in": {},
+  "out": {},
+  "links": {
+    "urlToDetailApp": {
+      "page": "routerExample",
+      "params": {
+        "stateParam": "stateParam",
+        "queryParam": "queryParamGlobal",
+        "queryParamTwo": "queryParamTwo"
+      }
+    }
+  }
+}
+                              </pre>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+  </template>
+
+  <script>
+(function() {
+  Polymer({
+    is: 'oldway-router',
+
+    behaviors: [
+      Polymer.CellsRouterBehavior
+    ],
+
+    properties: {
+    },
+
+    goToRouterExample: function(){
+       this.setUrl('urlToDetailApp', { 'stateParam': 1234 ,'queryParam': "un param" , "queryParamTwo": 5678});
+    }
+
+  });
+})();
+</script>
+
+</dom-module>

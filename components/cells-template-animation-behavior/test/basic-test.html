@@ -1,0 +1,310 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../test-fixture/test-fixture-mocha.js"></script>
+
+  <link rel="import" href="../../polymer/polymer.html">
+  <link rel="import" href="../../promise-polyfill/promise-polyfill-lite.html">
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+
+  <link rel="import" href="../../cells-template-1-column-right-sidebar/cells-template-1-column-right-sidebar.html">
+</head>
+
+<body>
+
+  <cells-template-1-column-right-sidebar id="tplOne" name="tplOne"></cells-template-1-column-right-sidebar>
+
+  <cells-template-1-column-right-sidebar id="tplTwo" name="tplTwo" state="inactive"></cells-template-1-column-right-sidebar>
+
+  <script>
+    var tplOne;
+    var otherTpl;
+
+    describe('cells-template-behavior', function() {
+
+      beforeEach(function() {
+        tplOne = document.querySelector('#tplOne');
+        otherTpl = document.querySelector('#tplTwo');
+      });
+
+      context('properties are correct', function() {
+
+        it('should have "name" property', function() {
+          expect(tplOne.behaviors[0].properties).to.have.property("name");
+        });
+        it('should have "distance" property', function() {
+          expect(tplOne.behaviors[0].properties).to.have.property("distance");
+        });
+        it('should have "state" property', function() {
+          expect(tplOne.behaviors[0].properties).to.have.property("state");
+        });
+        it('should have "animationType" property', function() {
+          expect(tplOne.behaviors[0].properties).to.have.property("animationType");
+        });
+        it('should have "horizontal" property', function() {
+          expect(tplOne.behaviors[0].properties).to.have.property("horizontal");
+        });
+        it('should have "verticalDownForwards" property', function() {
+          expect(tplOne.behaviors[0].properties).to.have.property("verticalDownForwards");
+        });
+        it('should have "verticalDownBackwards" property', function() {
+          expect(tplOne.behaviors[0].properties).to.have.property("verticalDownBackwards");
+        });
+        it('should have "verticalUp" property', function() {
+          expect(tplOne.behaviors[0].properties).to.have.property("verticalUp");
+        });
+        it('should have "static" property', function() {
+          expect(tplOne.behaviors[0].properties).to.have.property("static");
+        });
+      });
+
+      context('functions work properly', function() {
+        it('_statechanged is called when state is changed', function(){
+          var mySpy = sinon.spy(tplOne._stateChanged);
+          tplOne._stateChanged = mySpy;
+          tplOne.setAttribute('state','active');
+          expect(tplOne._stateChanged.called).is.equal(true);
+        });
+
+        it('_findTemplateByState is called when state changes to active', function(){
+          var mySpy = sinon.spy(tplOne._findTemplateByState);
+          var mySpy2 = sinon.spy(tplOne._stateChanged);
+          tplOne._stateChanged = mySpy2;
+          tplOne._findTemplateByState = mySpy;
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          expect(tplOne._stateChanged.called).is.equal(true);
+          expect(tplOne._findTemplateByState.called).is.equal(true);
+        });
+
+        it('_findTemplateByState isn\'t called when state changes to value diferent to active', function(){
+          var mySpy = sinon.spy(tplOne._findTemplateByState);
+          var mySpy2 = sinon.spy(tplOne._stateChanged);
+          tplOne._stateChanged = mySpy2;
+          tplOne._findTemplateByState = mySpy;
+          tplOne.setAttribute('state','inactive');
+          expect(tplOne._stateChanged.called).is.equal(true);
+          expect(tplOne._findTemplateByState.called).is.equal(false);
+        });
+
+        it('test _compareLevel method', function(){
+          var r;
+          r = tplOne._compareLevel("tpl","tpl.1");
+          expect(r).is.equals('child');
+          r = tplOne._compareLevel("tpl.1","tpl2.");
+          expect(r).is.equals('sibling');
+        });
+
+        it('test directAnimationForwards method', function(done){
+          var mySpy = sinon.spy(tplOne.directAnimationForwards);
+          var mySpy2 = sinon.spy(function(){ return 'child'; });
+          tplOne._compareLevel = mySpy2;
+          tplOne.directAnimationForwards = mySpy;
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          setTimeout(function() {
+            expect(tplOne.directAnimationForwards.called).is.equal(true);
+            done();
+          }, 100);
+        });
+
+        it('test directAnimationBackwards method', function(done){
+          var mySpy = sinon.spy(tplOne.directAnimationBackwards);
+          var mySpy2 = sinon.spy(function(){ return 'sibling'; });
+          tplOne._compareLevel = mySpy2;
+          tplOne.directAnimationBackwards = mySpy;
+          tplOne._templateN = tplOne;
+          tplOne._templateN.set(tplTwo,'templateB');
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          setTimeout(function() {
+            expect(tplOne.directAnimationBackwards.called).is.equal(true);
+            done();
+          }, 100);
+        });
+
+        it('test templateBRelation param when is parent', function(done){
+          var mySpy = sinon.spy(tplOne.directAnimationBackwards);
+          var mySpy2 = sinon.spy(function(){ return 'parent'; });
+          tplOne._compareLevel = mySpy2;
+          tplOne.directAnimationBackwards = mySpy;
+          tplOne._templateN = tplOne;
+          tplOne._templateN.set(tplTwo,'templateB');
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          setTimeout(function() {
+            expect(tplOne.directAnimationBackwards.called).is.equal(true);
+            done();
+          }, 100);
+        });
+
+        it('resetTemplate method is called when test animationend event is fired and template changes from active to inactive', function(done){
+          tplOne.setAttribute('state','active');
+          var evName = tplOne.style.WebkitAnimation !== undefined ? 'webkitAnimationEnd' : 'animationend';
+          var mySpy2 = sinon.spy(tplOne._stateChanged);
+          var mySpy = sinon.spy(tplOne.resetTemplate);
+          tplOne.resetTemplate = mySpy;
+          tplOne._stateChanged = mySpy2;
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplOne.fire(evName);
+          setTimeout(function() {
+            expect(tplOne.resetTemplate.called).is.equal(true);
+            done();
+          }, 100);
+        });
+
+        it('resetTemplate set state to cached', function(done){
+          var evName = tplOne.style.WebkitAnimation !== undefined ? 'webkitAnimationEnd' : 'animationend';
+          var mySpy = sinon.spy(tplOne.resetTemplate);
+          tplOne.resetTemplate = mySpy;
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplTwo.fire(evName);
+          setTimeout(function() {
+            expect(tplTwo.state).is.equals('cached');
+            done();
+          }, 100);
+        });
+
+        it('resetTemplate set state to not cached', function(done){
+          var evName = tplOne.style.WebkitAnimation !== undefined ? 'webkitAnimationEnd' : 'animationend';
+          var mySpy = sinon.spy(tplOne.resetTemplate);
+          tplOne.resetTemplate = mySpy;
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplOne.fire(evName);
+          setTimeout(function() {
+            expect(tplOne.state).is.not.equals('cached');
+            done();
+          }, 100);
+        });
+
+        it('_configureAnimationTypeActive when animationTypes is equals', function(){
+          var mySpy = sinon.spy(tplOne._configureAnimationTypeActive);
+          tplOne._configureAnimationTypeActive = mySpy;
+          tplOne._templateN = tplOne;
+          tplOne._templateN.set(tplTwo,'templateB');
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplOne.animationType = 'verticalUp';
+          tplTwo.animationType = 'verticalUp';
+          expect(tplOne._configureAnimationTypeActive(tplTwo)===tplOne.verticalUp).is.equals(true);
+        });
+
+        it('_configureAnimationTypeActive when animationType Tpl One is horizontalEver and Tpl Two is verticalUp', function(){
+          var mySpy = sinon.spy(tplOne._configureAnimationTypeActive);
+          tplOne._configureAnimationTypeActive = mySpy;
+          tplOne._templateN = tplOne;
+          tplOne._templateN.set(tplTwo,'templateB');
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplOne.animationType = 'horizontalEver';
+          tplTwo.animationType = 'verticalUp';
+          expect(tplOne._configureAnimationTypeActive(tplTwo)===tplOne.verticalUp).is.equals(true);
+        });
+
+        it('_configureAnimationTypeActive when animationType Tpl One is staticEver and Tpl Two is horizontalEver', function(){
+          var mySpy = sinon.spy(tplOne._configureAnimationTypeActive);
+          tplOne._configureAnimationTypeActive = mySpy;
+          tplOne._templateN = tplOne;
+          tplOne._templateN.set(tplTwo,'templateB');
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplOne.animationType = 'staticEver';
+          tplTwo.animationType = 'horizontalEver';
+          expect(tplOne._configureAnimationTypeActive(tplTwo)===tplOne.horizontal).is.equals(true);
+        });
+
+        it('_configureAnimationTypeActive when animationType Tpl One is verticalDownBackwards and Tpl Two is staticEver', function(){
+          var mySpy = sinon.spy(tplOne._configureAnimationTypeActive);
+          tplOne._configureAnimationTypeActive = mySpy;
+          tplOne._templateN = tplOne;
+          tplOne._templateN.set(tplTwo,'templateB');
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplOne.animationType = 'verticalDownBackwards';
+          tplTwo.animationType = 'staticEver';
+          expect(tplOne._configureAnimationTypeActive(tplTwo)===tplOne.static).is.equals(true);
+        });
+
+        it('_configureAnimationTypeActive when animationType Tpl One is verticalDownForwards and Tpl Two is verticalDownBackwards', function(){
+          var mySpy = sinon.spy(tplOne._configureAnimationTypeActive);
+          tplOne._configureAnimationTypeActive = mySpy;
+          tplOne._templateN = tplOne;
+          tplOne._templateN.set(tplTwo,'templateB');
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplOne.animationType = 'verticalDownForwards';
+          tplTwo.animationType = 'verticalDownBackwards';
+          expect(tplOne._configureAnimationTypeActive(tplTwo)===tplOne.verticalDownBackwards).is.equals(true);
+        });
+
+        it('_configureAnimationTypeActive when animationType Tpl One is verticalDown and Tpl Two is verticalDownForwards', function(){
+          var mySpy = sinon.spy(tplOne._configureAnimationTypeActive);
+          tplOne._configureAnimationTypeActive = mySpy;
+          tplOne._templateN = tplOne;
+          tplOne._templateN.set(tplTwo,'templateB');
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplOne.animationType = 'verticalDown';
+          tplTwo.animationType = 'verticalDownForwards';
+          expect(tplOne._configureAnimationTypeActive(tplTwo)===tplOne.verticalDownForwards).is.equals(true);
+        });
+
+        it('_configureAnimationTypeActive when animationType Tpl One and Two are diferents to verticalDownForwards, verticalDownBackwards, staticEver, horizontalEver and verticalUp', function(){
+          var mySpy = sinon.spy(tplOne._configureAnimationTypeActive);
+          tplOne._configureAnimationTypeActive = mySpy;
+          tplOne._templateN = tplOne;
+          tplOne._templateN.set(tplTwo,'templateB');
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplOne.animationType = 'verticalDown';
+          tplTwo.animationType = 'other';
+          expect(tplOne._configureAnimationTypeActive(tplTwo)===tplOne.horizontal).is.equals(true);
+        });
+
+        it('_configureAnimationTypeActive when animationType Tpl One is static and Tpl Two is horizontalEver and de main page is Tpl One', function(){
+          var mySpy = sinon.spy(tplOne._configureAnimationTypeActive);
+          tplOne._configureAnimationTypeActive = mySpy;
+          tplOne._templateN = tplOne;
+          tplOne._templateN.set(tplTwo,'templateB');
+          tplOne.setAttribute('state','inactive');
+          tplOne.setAttribute('state','active');
+          tplOne.animationType = 'static';
+          tplTwo.animationType = 'horizontalEver';
+          expect(tplOne._configureAnimationTypeActive(tplTwo)===tplOne.horizontalEverBack).is.equals(true);
+        });
+
+        it('_configureAnimationTypeActive when animationType Tpl One is static and Tpl Two is horizontalEver and de main page is Tpl Two', function(){
+          var mySpy = sinon.spy(tplTwo._configureAnimationTypeActive);
+          tplTwo._configureAnimationTypeActive = mySpy;
+          tplTwo._templateN = tplTwo;
+          tplTwo._templateN.set(tplTwo,'templateB');
+          tplTwo.setAttribute('state','inactive');
+          tplTwo.setAttribute('state','active');
+          tplTwo.animationType = 'horizontalEver';
+          tplOne.animationType = 'static';
+          expect(tplTwo._configureAnimationTypeActive(tplOne)===tplTwo.horizontalEverFor).is.equals(true);
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

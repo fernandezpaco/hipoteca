@@ -1,0 +1,39 @@
+{
+  "pages": {
+    "home": {
+      "url": "/"
+    },
+    "calculator": {
+      "url": "/calculator"
+    }
+  },
+  "template": {
+    "familyPath": "../../components/cells-template-paper-header-panel",
+    "tag": "cells-template-paper-header-panel",
+    "properties": {
+      "disableEdgeSwipe": true
+    }
+  },
+  "components": [
+    {
+      "zone": "app__main",
+      "type": "UI",
+      "tag": "payment-calculator",
+      "familyPath": "../elements/payment-calculator",
+      "properties": {
+
+        "cellsConnections": {
+          "in": {
+          },
+          "out": {
+          },
+          "params": {
+            "housePrice": "paramHousePrice",
+            "incomes": "paramIncomes",
+            "age": "paramAge"
+          }          
+        }
+      }
+    }
+  ]
+}

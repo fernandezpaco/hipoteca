@@ -1,0 +1,15 @@
+{
+  "name": "hipoteca",
+  "version": "0.1.0",
+  "dependencies": {
+    "cells-polymer-bridge": "ssh://git@globaldevtools.bbva.com:7999/cel/cells-polymer-bridge.git#0.3.1",
+    "cells-molecule-input": "ssh://globaldevtools.bbva.com:7999/BGCM/cells-molecule-input.git#^4.2.5",
+    "cells-atom-button": "^4.1.0",
+    "cells-template-paper-drawer-panel": "ssh://globaldevtools.bbva.com:7999/TP/cells-template-paper-drawer-panel.git#^2.9.0",
+    "cells-template-paper-header-panel": "ssh://globaldevtools.bbva.com:7999/TP/cells-template-paper-header-panel.git#^1.1.0",
+    "cells-theme-base": "ssh://globaldevtools.bbva.com:7999/ct/cells-theme-base.git#^4.0.13"
+  },
+  "resolutions": {
+    "polymer": "^1.8.0"
+  }
+}

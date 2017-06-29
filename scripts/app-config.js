@@ -1,0 +1,1 @@
+!function(o){"use strict";o.AppConfig={deployEndpoint:"",i18nPath:"locales/",componentsPath:"./components/",composerEndpoint:"./composerMocks/",debug:!0,mocks:!0,coreCache:!0,routerLog:!1,composerMocksTplEndpoint:"composerMocksTpl/",app:"default",environment:"env"}}(window);

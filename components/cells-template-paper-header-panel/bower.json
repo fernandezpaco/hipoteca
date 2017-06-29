@@ -1,0 +1,27 @@
+{
+  "name": "cells-template-paper-header-panel",
+  "version": "1.1.0",
+  "description": "Basic template of a column with a paper-header-panel component",
+  "keywords": [
+    "template",
+    "one column",
+    "paper-header-panel",
+    "spec"
+  ],
+  "ignore": [],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.6.0",
+    "cells-template-animation-behavior": "^2.0.20",
+    "paper-header-panel": "PolymerElements/paper-header-panel#^1.1.6"
+  },
+  "devDependencies": {
+    "cells-sass": "^1.0.15",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^3.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "paper-tabs": "PolymerElements/paper-tabs#^1.5.0"
+  },
+  "main": [
+    "cells-template-paper-header-panel.html"
+  ]
+}

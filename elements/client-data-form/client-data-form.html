@@ -1,0 +1,67 @@
+<dom-module id="client-data-form">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <cells-molecule-input label="¿Qué edad tiene?"
+      value="{{age}}"
+      type="number"
+      required="true"
+      prevent-invalid-input="true"
+      allowed-pattern="['0-9']">
+    </cells-molecule-input>
+    <cells-molecule-input label="¿Cuáles son sus ingresos mensuales" 
+      value="{{incomes}}"
+      type="number"
+      required="true"
+      prevent-invalid-input="true"
+      allowed-pattern="['0-9']">
+    </cells-molecule-input>
+     <cells-molecule-input label="¿Cuánto cuesta la casa que quiere comprar?" 
+      value="{{housePrice}}"
+      type="number"
+      required="true"
+      prevent-invalid-input="true"
+      allowed-pattern="['0-9']">
+    </cells-molecule-input>
+    <button class="btn--primary btn--l btn--full btn--composed" 
+        is="cells-atom-button" on-tap="_goToCalculator">
+      <span class="btn__text">Continuar</span>
+    </button>
+
+  </template>
+
+<script>
+(function() {
+  Polymer({
+    is: 'client-data-form',
+    properties: {
+      age: {
+        type: Number,
+        notify: true
+      },
+      housePrice: {
+        type: Number,
+        notify: true
+      },
+      incomes: {
+        type: Number,
+        notify: true
+      }
+    },
+    _goToCalculator: function() {
+      this.fire('nav-to-calculator-event', 
+        {
+          evtParamAge: this.age, 
+          evtParamHousePrice: this.housePrice,
+          evtParamIncomes: this.incomes
+        });
+    }
+
+  });
+})();
+</script>
+
+</dom-module>
