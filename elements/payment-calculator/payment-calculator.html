@@ -47,7 +47,8 @@
       },
       amount: {
         type: Number,
-        notify: true
+        notify: true,
+        observer: '_parseNumber'
       },
       term: {
         type: Number,
@@ -80,6 +81,14 @@
 
     _computeMonthlyPayment: function(term, amount) {
       return amount*1.0025/(term*12);
+    },
+    
+    _parseNumber: function(strValue) {
+      var numberValue = parseFloat(strValue);
+      if (numberValue.toString()=='NaN') {
+        numberValue = 0;
+      }
+      return numberValue;
     }
   });
 })();
